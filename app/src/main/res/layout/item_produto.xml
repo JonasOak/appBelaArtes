@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/pink"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp">
+
+
+        <ImageView
+            android:id="@+id/imgProduto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textNome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nome do Produto"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/imgProduto"
+            app:layout_constraintTop_toTopOf="@id/imgProduto"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textDescricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Descrição"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/textNome"
+            app:layout_constraintTop_toBottomOf="@id/textNome"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textCategoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Categoria"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/textDescricao"
+            app:layout_constraintTop_toBottomOf="@id/textDescricao"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textPreco"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="R$ 0.00"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/textCategoria"
+            app:layout_constraintTop_toBottomOf="@id/textCategoria"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textEstoque"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Estoque: 0"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/textPreco"
+            app:layout_constraintTop_toBottomOf="@id/textPreco"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

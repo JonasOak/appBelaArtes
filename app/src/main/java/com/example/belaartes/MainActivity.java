@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+//        setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -39,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        textUsuarios = findViewById(R.id.textUsuarios);
-        textProdutos = findViewById(R.id.textProdutos);
-        imageProduto = findViewById(R.id.imageProduto);
-
-        buscarUsuarios();
-        buscarProdutos();
+//        textUsuarios = findViewById(R.id.textUsuarios);
+//        textProdutos = findViewById(R.id.textProdutos);
+//        imageProduto = findViewById(R.id.imageProduto);
+//
+//        buscarUsuarios();
+//        buscarProdutos();
     }
 
     private void buscarUsuarios() {
