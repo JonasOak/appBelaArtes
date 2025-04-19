@@ -2,4 +2,9 @@
 <resources>
     <color name="pink">#FAD8DE</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="rosa_tracejado">#FFB6C1</color>
+    <color name="fundo_claro1">#FADADD</color>
+    <color name="fundo_claro2">#FFEFF1</color>
+    <color name="rosa_bella_artesanato">#E75480</color>
+    <color name="cinza_claro_contato">#D3D3D3</color>
 </resources>

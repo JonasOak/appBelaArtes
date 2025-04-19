@@ -63,10 +63,10 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.325" />
+        app:layout_constraintVertical_bias="0.311" />
 
     <TextView
         android:id="@+id/textView4"
@@ -127,10 +127,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
-        android:layout_width="311dp"
-        android:layout_height="75dp"
+        android:layout_width="306dp"
+        android:layout_height="59dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/btn_principal"
         android:text="Conectar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

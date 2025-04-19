@@ -1,6 +1,8 @@
 package com.example.belaartes.data.model.entities;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private int idUsuario;
     private String email;
@@ -9,6 +11,14 @@ public class Usuario {
 
     public Usuario() {
     }
+
+    // Construtor para novo usuário
+    public Usuario(String email, String senhaHash, String cargo) {
+        this.email = email;
+        this.senhaHash = senhaHash;
+        this.cargo = cargo;
+    }
+
     public Usuario(int idUsuario, String email, String senhaHash, String cargo) {
         this.idUsuario = idUsuario;
         this.email = email;

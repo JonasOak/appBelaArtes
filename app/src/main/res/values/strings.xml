@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">BelaArtes</string>
+
+    <!--    strings da tela de usuário-->
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
+
+    <string-array name="cargos_array">
+        <item>Cliente</item>
+    </string-array>
+
+    <!--    tela de editar usuário-->
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="cargo">Cargo</string>
+    <string name="salvar">Salvar</string>
+    <string name="editar_usu_rio">Editar usuário</string>
+    <!--    fim-->
 </resources>

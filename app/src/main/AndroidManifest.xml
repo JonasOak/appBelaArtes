@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ListaUsuariosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditarUsuarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".TelaInicialActivity"
             android:exported="false" />
         <activity
