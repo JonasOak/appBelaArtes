@@ -1,8 +1,9 @@
 package com.example.belaartes.data.model.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Produto {
+public class Produto implements Serializable {
 
     private int idProduto;
     private String nome;
