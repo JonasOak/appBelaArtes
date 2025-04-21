@@ -19,7 +19,7 @@
             android:name=".ui.cliente.ProdutoDetalheActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.cliente.CadastraPedidoActivity"
+            android:name=".ui.cliente.CarrinhoComprasActivity"
             android:exported="false" />
         <activity
             android:name=".ui.admin.EditarProdutoActivity"

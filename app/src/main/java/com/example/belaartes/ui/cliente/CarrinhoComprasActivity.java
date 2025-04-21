@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belaartes.R;
 
-public class CadastraPedidoActivity extends AppCompatActivity {
+public class CarrinhoComprasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cadastra_pedido);
+        setContentView(R.layout.activity_carrinho_compras);
     }
 
 //    @Override
