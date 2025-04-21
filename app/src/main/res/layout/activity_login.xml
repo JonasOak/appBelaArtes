@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/pink"
     android:backgroundTint="@color/pink"
-    tools:context=".LoginActivity">
+    tools:context=".ui.auth.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"

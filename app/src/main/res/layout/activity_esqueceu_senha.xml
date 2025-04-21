@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/pink"
     android:padding="24dp"
-    tools:context=".EsqueceuSenhaActivity">
+    tools:context=".ui.auth.EsqueceuSenhaActivity">
 
     <!-- TÍTULO -->
     <TextView

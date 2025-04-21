@@ -1,16 +1,13 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.cliente;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belaartes.R;
 import com.example.belaartes.adapters.ProdutoAdapter;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
@@ -37,7 +34,7 @@ public class ListaProdutosActivity extends AppCompatActivity {
         ProdutoRepository.getAllProdutos(this, new ProdutoRepository.ProdutoCallback() {
             @Override
             public void onSuccess(List<Produto> produtos) {
-                adapter = new ProdutoAdapter(produtos);
+                adapter = new ProdutoAdapter(produtos, ListaProdutosActivity.this, null);
                 recyclerView.setAdapter(adapter);
             }
             @Override

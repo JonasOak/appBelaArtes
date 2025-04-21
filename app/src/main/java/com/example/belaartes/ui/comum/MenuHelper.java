@@ -1,10 +1,11 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.comum;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import com.example.belaartes.R;
 
 public class MenuHelper {
 

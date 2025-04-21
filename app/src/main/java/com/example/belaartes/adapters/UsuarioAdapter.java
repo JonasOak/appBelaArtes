@@ -3,6 +3,7 @@ package com.example.belaartes.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,11 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
     public void onBindViewHolder(@NonNull UsuarioViewHolder holder, int position) {
         Usuario usuario = usuarios.get(position);
         holder.bind(usuario);
+    }
+
+    @Override
+    public int getItemCount() {
+        return usuarios != null ? usuarios.size() : 0;  // Retorna o número de itens da lista
     }
 
     class UsuarioViewHolder extends RecyclerView.ViewHolder {

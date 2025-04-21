@@ -16,53 +16,49 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".CadastraPedidoActivity"
+            android:name=".ui.cliente.CadastraPedidoActivity"
             android:exported="false" />
         <activity
-            android:name=".EditarProdutoActivity"
+            android:name=".ui.admin.EditarProdutoActivity"
             android:exported="false" />
         <activity
-            android:name=".CadastroProdutoActivity"
+            android:name=".ui.admin.CadastroProdutoActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminProdutosActivity"
+            android:name=".ui.admin.AdminProdutosActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaProdutosActivity"
+            android:name=".ui.cliente.ListaProdutosActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaUsuariosActivity"
+            android:name=".ui.admin.ListaUsuariosActivity"
             android:exported="false" />
         <activity
-            android:name=".EditarUsuarioActivity"
+            android:name=".ui.admin.EditarUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".CadastroUsuarioActivity"
+            android:name=".ui.admin.CadastroUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".TelaInicialActivity"
+            android:name=".ui.comum.TelaInicialActivity"
             android:exported="false" />
         <activity
-            android:name=".EsqueceuSenhaActivity"
+            android:name=".ui.auth.EsqueceuSenhaActivity"
             android:exported="false" />
+
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".MainActivity" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <activity
-            android:name=".SplashActivity"
-            android:exported="true">
+        android:name=".ui.auth.SplashActivity"
+        android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- Atividade principal -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
         </activity>
     </application>
 

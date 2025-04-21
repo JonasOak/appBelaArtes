@@ -31,21 +31,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
+
+        // Inicialização das views
+        textUsuarios = findViewById(R.id.textUsuarios);
+        textProdutos = findViewById(R.id.textProdutos);
+        imageProduto = findViewById(R.id.imageProduto);
+
+        // Configuração do EdgeToEdge
+        EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-//        textUsuarios = findViewById(R.id.textUsuarios);
-//        textProdutos = findViewById(R.id.textProdutos);
-//        imageProduto = findViewById(R.id.imageProduto);
-//
-//        buscarUsuarios();
-//        buscarProdutos();
+        // Carregar dados
+        buscarUsuarios();
+        buscarProdutos();
     }
 
     private void buscarUsuarios() {
@@ -82,15 +85,21 @@ public class MainActivity extends AppCompatActivity {
                     resultado.append("Preço: ").append(p.getPreco()).append("\n");
                     resultado.append("Estoque: ").append(p.getEstoque()).append("\n");
 
-                    if (p.getImagem() != null) {
-                        byte[] imageBytes = Base64.decode(p.getImagem(), Base64.DEFAULT);
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                        imageProduto.setImageBitmap(bitmap);
+                    // Verificar se a imagem não é nula antes de tentar decodificar
+                    if (p.getImagem() != null && !p.getImagem().isEmpty()) {
+                        try {
+                            byte[] imageBytes = Base64.decode(p.getImagem(), Base64.DEFAULT);
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                            imageProduto.setImageBitmap(bitmap);
+                        } catch (Exception e) {
+                            Log.e("API", "Erro ao decodificar a imagem", e);
+                        }
+                    } else {
+                        imageProduto.setImageResource(R.drawable.logo);
                     }
                 }
                 textProdutos.setText(resultado.toString());
                 Log.d("API", "Recebeu " + produtos.size() + " produtos");
-
             }
 
             @Override

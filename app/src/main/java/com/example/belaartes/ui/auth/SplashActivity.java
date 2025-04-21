@@ -1,9 +1,12 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.belaartes.MainActivity;
+import com.example.belaartes.R;
 
 public class SplashActivity extends AppCompatActivity{
 

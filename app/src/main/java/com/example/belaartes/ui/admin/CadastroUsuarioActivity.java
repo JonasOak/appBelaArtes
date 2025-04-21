@@ -1,4 +1,4 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.admin;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {

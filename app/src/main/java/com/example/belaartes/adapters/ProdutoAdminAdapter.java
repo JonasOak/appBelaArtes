@@ -1,6 +1,9 @@
 package com.example.belaartes.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Produto;
 
@@ -50,11 +51,19 @@ public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapte
         holder.preco.setText(String.format("R$ %.2f", produto.getPreco()));
         holder.estoque.setText("Estoque: " + produto.getEstoque());
 
-        Glide.with(context)
-                .load(produto.getImagem())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(holder.imagem);
+        String imagemBase64 = produto.getImagem();
+        if (imagemBase64 != null && !imagemBase64.isEmpty()) {
+            try {
+                byte[] imagemBytes = Base64.decode(imagemBase64, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
+                holder.imagem.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+                holder.imagem.setImageResource(R.drawable.ic_launcher_foreground); // fallback
+            }
+        } else {
+            holder.imagem.setImageResource(R.drawable.ic_launcher_foreground); // placeholder
+        }
 
         holder.btnEditar.setOnClickListener(v -> {
             if (listener != null) {
