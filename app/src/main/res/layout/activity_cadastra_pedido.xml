@@ -94,7 +94,7 @@
                     android:layout_height="64dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="Imagem do produto"
-                    android:src="" />
+                    android:src="@drawable/logo" />
 
                 <LinearLayout
                     android:layout_width="0dp"

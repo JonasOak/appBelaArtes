@@ -1,4 +1,4 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.admin;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+
+import com.example.belaartes.ui.comum.MenuHelper;
+import com.example.belaartes.R;
 
 public class CadastroProdutoActivity extends AppCompatActivity {
 

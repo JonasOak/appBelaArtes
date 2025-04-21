@@ -1,9 +1,8 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.widget.SearchView;
 import android.view.Menu;
@@ -15,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belaartes.ui.comum.MenuHelper;
+import com.example.belaartes.R;
 import com.example.belaartes.adapters.ProdutoAdminAdapter;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
@@ -22,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class AdminProdutosActivity extends AppCompatActivity{
+public class AdminProdutosActivity extends AppCompatActivity implements ProdutoAdminAdapter.OnAdminActionListener {
 
     private RecyclerView recyclerView;
     private ProdutoAdminAdapter adapter;

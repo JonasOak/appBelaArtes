@@ -1,4 +1,4 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.admin;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,9 +9,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.belaartes.ui.comum.MenuHelper;
+import com.example.belaartes.R;
 
 public class EditarProdutoActivity extends AppCompatActivity {
 

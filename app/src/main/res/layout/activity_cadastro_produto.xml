@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/pink"
     android:padding="16dp"
-    tools:context=".CadastroProdutoActivity">
+    tools:context=".ui.admin.CadastroProdutoActivity">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar

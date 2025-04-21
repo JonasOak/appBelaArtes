@@ -1,4 +1,4 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.belaartes.R;
 import com.example.belaartes.adapters.UsuarioAdapter;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

@@ -1,16 +1,16 @@
-package com.example.belaartes;
+package com.example.belaartes.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Usuario;
 
 public class EditarUsuarioActivity extends AppCompatActivity {
