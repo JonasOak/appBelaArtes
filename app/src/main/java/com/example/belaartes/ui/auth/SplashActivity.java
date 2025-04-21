@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.belaartes.MainActivity;
 import com.example.belaartes.R;
+import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 
 public class SplashActivity extends AppCompatActivity{
 
@@ -15,11 +15,14 @@ public class SplashActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Espera 2 segundos e abre a tela de login (MainActivity)
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish(); // Encerra a SplashActivity
-        }, 2000); // 2 segundos
+        // Aguarda 2 segundos e depois redireciona para ListaProdutosActivity
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, CatalogoProdutosActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
     }
 }

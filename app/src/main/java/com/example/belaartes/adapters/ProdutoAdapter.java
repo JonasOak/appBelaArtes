@@ -40,7 +40,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     @Override
     public ProdutoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_produto, parent, false);
+                .inflate(R.layout.activity_catalogo_produtos, parent, false);
         return new ProdutoViewHolder(view);
     }
 
@@ -50,6 +50,10 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
         holder.nome.setText(produto.getNome());
         holder.preco.setText(String.format("R$ %.2f", produto.getPreco()));
+        holder.descricao.setText(produto.getDescricao());
+        holder.categoria.setText(produto.getCategoria());
+        holder.estoque.setText("Estoque: " + produto.getEstoque());
+
 
         String imagemBase64 = produto.getImagem();
         if (imagemBase64 != null && !imagemBase64.isEmpty()) {
@@ -79,12 +83,15 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     static class ProdutoViewHolder extends RecyclerView.ViewHolder {
         ImageView imagem;
-        TextView nome, preco;
+        TextView nome, preco, descricao, categoria, estoque;
 
         public ProdutoViewHolder(@NonNull View itemView) {
             super(itemView);
             imagem = itemView.findViewById(R.id.imgProduto);
             nome = itemView.findViewById(R.id.tvNome);
+            descricao = itemView.findViewById(R.id.tvDescricao);
+            categoria = itemView.findViewById(R.id.tvCategoria);
+            estoque = itemView.findViewById(R.id.tvEstoque);
             preco = itemView.findViewById(R.id.tvPreco);
         }
     }
