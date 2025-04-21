@@ -25,6 +25,11 @@ public class ProdutoRepository {
         void onError(String mensagemErro);
     }
 
+    public interface ProdutoCallbackUnico {
+        void onSuccess(Produto produto);
+        void onError(String error);
+    }
+
     public interface ProdutoDeleteCallback {
         void onSuccess();
         void onError(String mensagemErro);
@@ -89,7 +94,7 @@ public class ProdutoRepository {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    public static void buscarProdutoPorId(Context context, int id, final ProdutoCallback callback) {
+    public static void buscarProdutoPorId(Context context, int id, final ProdutoCallbackUnico callback) {
         String url = BASE_URL + "/" + id;
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
@@ -106,9 +111,7 @@ public class ProdutoRepository {
                         produto.setImagem(response.getString("imagemBase64"));
                         produto.setEstoque(response.getInt("estoque"));
 
-                        List<Produto> lista = new ArrayList<>();
-                        lista.add(produto);
-                        callback.onSuccess(lista);
+                        callback.onSuccess(produto);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         callback.onError("Erro ao processar resposta do produto");
@@ -143,7 +146,6 @@ public class ProdutoRepository {
         );
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
-
 
     public static void deleteProduto(Context context, int id, final ProdutoDeleteCallback callback) {
         String url = BASE_URL + "/" + id;

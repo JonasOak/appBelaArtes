@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.cliente.ProdutoDetalheActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.cliente.CadastraPedidoActivity"
             android:exported="false" />
         <activity
@@ -26,9 +29,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.admin.AdminProdutosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.cliente.ListaProdutosActivity"
             android:exported="false" />
         <activity
             android:name=".ui.admin.ListaUsuariosActivity"
@@ -45,21 +45,18 @@
         <activity
             android:name=".ui.auth.EsqueceuSenhaActivity"
             android:exported="false" />
-
         <activity
-        android:name=".ui.auth.SplashActivity"
-        android:exported="true">
+            android:name=".ui.auth.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Atividade principal -->
+        </activity> <!-- Atividade principal -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:name=".ui.cliente.CatalogoProdutosActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
