@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/pink"
+    tools:context=".TelaHome">
+
+    <!-- Barra de busca -->
+    <EditText
+
+        android:id="@+id/edtBusca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar bolsas..."
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Linha com Favorito e Filtro -->
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginBottom="16dp">
+
+        <!-- Botão Favorito -->
+        <ImageButton
+
+            android:id="@+id/btnFavorito"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Favorito"
+            android:padding="8dp"
+            android:src="@android:drawable/btn_star_big_off" />
+
+        <!-- Botão Filtro -->
+        <ImageButton
+
+            android:id="@+id/btnFiltro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:contentDescription="Filtrar"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <!-- RecyclerView que ocupa todo espaço restante -->
+
+    <ImageView
+        android:id="@+id/imgProduto"
+        android:layout_width="113dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="1846dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
