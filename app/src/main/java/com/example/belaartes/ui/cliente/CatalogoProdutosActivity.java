@@ -28,9 +28,9 @@ public class CatalogoProdutosActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rvProdutos);
         // GridLayoutManager com 2 colunas
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setPadding(0, 400, 0, 0);
+        recyclerView.setPadding(0, 200, 0, 0);
         recyclerView.setClipToPadding(false);
         recyclerView.setClipChildren(false);
         recyclerView.setHasFixedSize(true);
