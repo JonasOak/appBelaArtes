@@ -30,7 +30,7 @@ public class CatalogoProdutosActivity extends AppCompatActivity {
         // GridLayoutManager com 2 colunas
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setPadding(0, 0, 0, 0);
+        recyclerView.setPadding(0, 400, 0, 0);
         recyclerView.setClipToPadding(false);
         recyclerView.setClipChildren(false);
         recyclerView.setHasFixedSize(true);
