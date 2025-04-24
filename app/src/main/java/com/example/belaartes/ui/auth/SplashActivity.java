@@ -6,7 +6,10 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belaartes.R;
+import com.example.belaartes.ui.admin.AdminProdutosActivity;
+import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
+import com.example.belaartes.ui.cliente.ProdutoDetalheActivity;
 
 public class SplashActivity extends AppCompatActivity{
 
@@ -19,7 +22,10 @@ public class SplashActivity extends AppCompatActivity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+//                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+               Intent intent = new Intent(SplashActivity.this, CarrinhoComprasActivity.class);
+//                Intent intent = new Intent(SplashActivity.this, CatalogoProdutosActivity.class);
+
                 startActivity(intent);
                 finish();
             }
