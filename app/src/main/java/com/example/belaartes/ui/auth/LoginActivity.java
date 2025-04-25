@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
+import com.example.belaartes.data.session.ClientSession;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                 public void onSuccess(Usuario usuario) {
                     Toast.makeText(LoginActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, CatalogoProdutosActivity.class);
+                    //Receber o valor do id para fazer consulta dos dados do cliente
+                //    ClientSession.clientSession.setIdCliente(usuario.getIdUsuario());
                     startActivity(intent);
                     finish();
                 }
