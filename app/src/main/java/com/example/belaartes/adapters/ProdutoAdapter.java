@@ -1,27 +1,41 @@
 package com.example.belaartes.adapters;
 
+import static com.example.belaartes.data.session.CheckoutSession.listCart;
+
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belaartes.R;
+import com.example.belaartes.data.model.entities.ItemPedido;
 import com.example.belaartes.data.model.entities.Produto;
+import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
+import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 // ProdutoAdapter.java
 // ProdutoAdapter.java
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder> {
-
+    /**
+     * listCard adicionar uma lista de produtos
+     */
     private List<Produto> produtos;
     private Context context;
     private OnProdutoClickListener listener;
@@ -74,6 +88,16 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
                 listener.onProdutoClick(produto);
             }
         });
+
+         /**
+         * Logicar para adicionar no carrinho de comprar
+         */
+        holder.addCart.setOnClickListener(v -> {
+            ItemPedido selectedProduct = new ItemPedido(produto, 1, produto.getPreco());
+            listCart.add(selectedProduct);
+            Toast.makeText(context, "Adicionado ao carrinho: " + produto.getNome(), Toast.LENGTH_SHORT).show();
+
+        });
     }
 
     @Override
@@ -84,6 +108,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
     static class ProdutoViewHolder extends RecyclerView.ViewHolder {
         ImageView imagem;
         TextView nome, preco, descricao, categoria, estoque;
+        ImageButton addCart;
 
         public ProdutoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +118,9 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             categoria = itemView.findViewById(R.id.tvCategoria);
             estoque = itemView.findViewById(R.id.tvEstoque);
             preco = itemView.findViewById(R.id.tvPreco);
+            addCart = itemView.findViewById(R.id.btnAdicionarCarrinho);
         }
+
+
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UsuarioRepository {
 
-    private static final String BASE_URL = "http://10.0.2.2:8080/usuarios";
+    private static final String BASE_URL = "http://186.247.89.58:8080/usuarios";
 
     public interface UsuarioCallback {
         void onSuccess(List<Usuario> usuarios);

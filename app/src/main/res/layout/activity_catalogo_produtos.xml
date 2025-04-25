@@ -77,13 +77,15 @@
                         </LinearLayout>
 
                         <!-- ÍCONE DO CARRINHO À DIREITA -->
-                        <ImageView
+                        <ImageButton
                             android:id="@+id/btnAdicionarCarrinho"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:src="@drawable/shopping_cart_simple"
                             android:contentDescription="Adicionar ao carrinho"
-                            android:layout_marginStart="8dp" />
+                            android:layout_marginStart="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="4dp"/>
                 </LinearLayout>
         </LinearLayout>
 </androidx.cardview.widget.CardView>
