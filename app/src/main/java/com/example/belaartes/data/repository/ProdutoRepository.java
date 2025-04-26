@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ProdutoRepository {
 
-    private static final String BASE_URL = "http://10.0.2.2:8080/produtos";
+    private static final String BASE_URL = "http://186.247.89.58:8080/produtos";
 
     public interface ProdutoCallback {
         void onSuccess(List<Produto> produtos);

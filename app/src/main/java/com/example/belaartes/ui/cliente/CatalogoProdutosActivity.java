@@ -2,6 +2,8 @@ package com.example.belaartes.ui.cliente;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,12 +23,21 @@ public class CatalogoProdutosActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ProdutoAdapter adapter;
 
+    // Botão de carrinho
+    private Button checkout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_produtos);
 
         recyclerView = findViewById(R.id.rvProdutos);
+
+        //Carregar configuração de carrinho de comprar
+        this.checkout = findViewById(R.id.btn_checkout);
+        setupListeners();
+
+
         // GridLayoutManager com 2 colunas
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
@@ -37,6 +48,19 @@ public class CatalogoProdutosActivity extends AppCompatActivity {
         recyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.pink));
 
         carregarProdutos();
+    }
+
+    private void setupListeners(){
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                runOnUiThread(()->{
+                    Intent screenCheckout = new Intent(CatalogoProdutosActivity.this, CarrinhoComprasActivity.class);
+                    startActivity(screenCheckout);
+                    Toast.makeText(CatalogoProdutosActivity.this, "testando", Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
     }
 
     private void carregarProdutos() {

@@ -1,6 +1,8 @@
 package com.example.belaartes.data.model.entities;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
 
     private int idCliente;
     private String nome;
@@ -11,8 +13,18 @@ public class Cliente {
     private String bairro;
     private String cep;
     private String complemento;
-
+    private Usuario usuario;
     public Cliente() {
+    }
+
+    public Cliente(String nome, String cpf, String telefone, String logradouro, String numero, String bairro, String cep) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cep = cep;
     }
 
     public Cliente(int idCliente, String nome, String cpf, String telefone, String logradouro, String numero, String bairro, String cep, String complemento) {
@@ -25,6 +37,22 @@ public class Cliente {
         this.bairro = bairro;
         this.cep = cep;
         this.complemento = complemento;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "idCliente=" + idCliente +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", numero='" + numero + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cep='" + cep + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", usuario=" + usuario +
+                '}';
     }
 
     public int getIdCliente() {
@@ -97,5 +125,13 @@ public class Cliente {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

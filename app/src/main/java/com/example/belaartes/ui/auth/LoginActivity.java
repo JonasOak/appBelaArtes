@@ -2,6 +2,7 @@ package com.example.belaartes.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +15,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.belaartes.R;
+import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
+import com.example.belaartes.data.session.ClientSession;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
+import com.example.belaartes.ui.cliente.RegisterClientActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -51,21 +55,39 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            UsuarioRepository.login(this, email, senha, new UsuarioRepository.LoginCallback() {
+            UsuarioRepository.Authenticar(this, email, senha, new UsuarioRepository.ClientLoginCallback() {
                 @Override
-                public void onSuccess(Usuario usuario) {
-                    Toast.makeText(LoginActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, CatalogoProdutosActivity.class);
-                    startActivity(intent);
+                public void onSuccess(Cliente client) {
+                    ClientSession.setClientSession(client);
+                    Log.d("Login response", "date " +client);
                     finish();
                 }
 
                 @Override
                 public void onError(String errorMessage) {
-                    Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                    runOnUiThread(()->{
+                        Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    });
+
                 }
             });
+
+//            UsuarioRepository.login(this, email, senha, new UsuarioRepository.LoginCallback() {
+//                @Override
+//                public void onSuccess(Usuario usuario) {
+//                    Toast.makeText(LoginActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(LoginActivity.this, CatalogoProdutosActivity.class);
+//                    //Receber o valor do id para fazer consulta dos dados do cliente
+//                //    ClientSession.clientSession.setIdCliente(usuario.getIdUsuario());
+//                    startActivity(intent);
+//                    finish();
+//                }
+//
+//                @Override
+//                public void onError(String errorMessage) {
+//                    Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+//                }
+//            });
         });
     }
 
@@ -74,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterClientActivity.class);
                 startActivity(intent);
             }
         });

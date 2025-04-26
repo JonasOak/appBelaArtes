@@ -12,6 +12,12 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
+    public Usuario(String email, String senhaHash) {
+        this.email = email;
+        this.senhaHash = senhaHash;
+        this.cargo = "CLIENTE";
+    }
+
     // Construtor para novo usuário
     public Usuario(String email, String senhaHash, String cargo) {
         this.email = email;
@@ -24,6 +30,16 @@ public class Usuario implements Serializable {
         this.email = email;
         this.senhaHash = senhaHash;
         this.cargo = cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", email='" + email + '\'' +
+                ", senhaHash='" + senhaHash + '\'' +
+                ", cargo='" + cargo + '\'' +
+                '}';
     }
 
     public int getIdUsuario() {

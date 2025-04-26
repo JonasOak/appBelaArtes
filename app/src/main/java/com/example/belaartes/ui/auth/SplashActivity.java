@@ -10,13 +10,14 @@ import com.example.belaartes.ui.admin.AdminProdutosActivity;
 import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 import com.example.belaartes.ui.cliente.ProdutoDetalheActivity;
+import com.example.belaartes.ui.cliente.RegisterClientActivity;
 
 public class SplashActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_cadastro_usuario);
 
         // Aguarda 2 segundos e depois redireciona para ListaProdutosActivity
         new Handler().postDelayed(new Runnable() {
