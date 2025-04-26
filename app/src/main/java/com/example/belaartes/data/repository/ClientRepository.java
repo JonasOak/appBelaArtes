@@ -12,7 +12,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ClientRepository {
-    private static final String BASE_URL = "http://186.247.89.58:8080/clientes";
+    private static final String BASE_URL = "http://10.0.2.2:8080/clientes";
+    // http://10.0.2.2:8080/clientes (localhost)
+    // http://186.247.89.58:8080/clientes (servidor Eduardo)
 
     public interface RegisterCallback {
         void onSuccess(String response);
