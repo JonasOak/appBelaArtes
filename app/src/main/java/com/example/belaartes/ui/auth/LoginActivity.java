@@ -20,6 +20,7 @@ import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
+import com.example.belaartes.ui.cliente.RegisterClientActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -95,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterClientActivity.class);
                 startActivity(intent);
             }
         });
