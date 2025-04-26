@@ -61,7 +61,7 @@ public class CarrinhoComprasActivity extends AppCompatActivity {
 
 
     protected void sendMessage(){
-        String numeroTelefone = "5571986917919";
+        String numeroTelefone = "5571983579082";
 
         StringBuilder mensagem = new StringBuilder();
         mensagem.append("Olá, meu nome é ").append(clientSession.getNome()).append("!\n\n");
