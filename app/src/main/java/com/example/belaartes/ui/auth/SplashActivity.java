@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-              Intent intent = new Intent(SplashActivity.this, RegisterClientActivity.class);
+              Intent intent = new Intent(SplashActivity.this, CatalogoProdutosActivity.class);
                 startActivity(intent);
                 finish();
             }
