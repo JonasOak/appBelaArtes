@@ -6,6 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.belaartes.data.api.VolleySingleton;
+import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.session.ClientSession;
 
@@ -29,6 +30,56 @@ public class UsuarioRepository {
         void onError(String errorMessage);
     }
 
+    public interface ClientLoginCallback {
+        void onSuccess(Cliente client);
+        void onError(String errorMessage);
+    }
+
+    public static void Authenticar(Context context, String email, String senha, ClientLoginCallback callback) {
+        String url = BASE_URL + "/login";
+
+        JSONObject loginData = new JSONObject();
+        try {
+            loginData.put("email", email);
+            loginData.put("senha", senha);
+        } catch (JSONException e) {
+            callback.onError("Erro ao criar JSON de login");
+            return;
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, loginData,
+                response -> {
+                    try {
+
+                        Cliente client = new Cliente(
+                                response.getInt("idCliente"),
+                                response.getString("nome"),
+                                response.getString("cpf"),
+                                response.getString("telefone"),
+                                response.getString("logradouro"),
+                                response.getString("numero"),
+                                response.getString("bairro"),
+                                response.getString("cep"),
+                                response.getString("complemento")
+                        );
+                        callback.onSuccess(client);
+                    } catch (JSONException e) {
+                        callback.onError("Erro ao interpretar resposta do servidor");
+                    }
+                },
+                error -> {
+                    if (error.networkResponse != null && error.networkResponse.statusCode == 401) {
+                        callback.onError("Email ou senha inválidos");
+                    } else {
+                        callback.onError("Erro ao conectar com o servidor");
+                    }
+                }
+        );
+
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+
     public static void login(Context context, String email, String senha, LoginCallback callback) {
         String url = BASE_URL + "/login";
 
@@ -48,7 +99,6 @@ public class UsuarioRepository {
                         String emailResponse = response.getString("email");
                         String senhaHash = response.getString("senhaHash");
                         String cargo = response.getString("cargo");
-
                         Usuario usuario = new Usuario(idUsuario, emailResponse, senhaHash, cargo);
                         callback.onSuccess(usuario);
                     } catch (JSONException e) {
