@@ -15,10 +15,11 @@ import com.example.belaartes.R;
 import com.example.belaartes.adapters.ProdutoAdapter;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
+import com.example.belaartes.ui.comum.BaseClienteActivity;
 
 import java.util.List;
 
-public class CatalogoProdutosActivity extends AppCompatActivity {
+public class CatalogoProdutosActivity extends BaseClienteActivity {
 
     private RecyclerView recyclerView;
     private ProdutoAdapter adapter;
@@ -34,8 +35,8 @@ public class CatalogoProdutosActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvProdutos);
 
         //Carregar configuração de carrinho de comprar
-        this.checkout = findViewById(R.id.btn_checkout);
-        setupListeners();
+//        this.checkout = findViewById(R.id.btn_checkout);
+//        setupListeners();
 
 
         // GridLayoutManager com 2 colunas

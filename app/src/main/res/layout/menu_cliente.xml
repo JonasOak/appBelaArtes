@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Campo de busca -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/icBuscar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/magnifying_glass"
+        android:contentDescription="Buscar" />
+
+        <EditText
+            android:id="@+id/edtBuscar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Buscar produtos"
+            android:background="@color/fundo_claro2"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+    <!-- Conteúdo dinâmico -->
+    <FrameLayout
+        android:id="@+id/containerTela"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Menu inferior fixo -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fundo_claro2"
+        app:menu="@menu/menu_bottom_cliente" />
+</LinearLayout>
+
+
+

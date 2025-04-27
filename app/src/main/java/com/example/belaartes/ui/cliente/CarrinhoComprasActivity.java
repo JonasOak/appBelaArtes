@@ -25,6 +25,7 @@ import com.example.belaartes.data.model.entities.ItemPedido;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
 import com.example.belaartes.ui.auth.LoginActivity;
+import com.example.belaartes.ui.comum.BaseClienteActivity;
 
 import java.math.BigDecimal;
 import java.net.URLEncoder;
@@ -32,7 +33,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class CarrinhoComprasActivity extends AppCompatActivity {
+public class CarrinhoComprasActivity extends BaseClienteActivity {
     private ImageView imgProduct;
     private TextView productName, productDescription, productAmount, productMoney, productSubTotal;
     private Button sendProof;
