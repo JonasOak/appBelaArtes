@@ -12,9 +12,11 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,9 +38,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CarrinhoComprasActivity extends AppCompatActivity {
-    private TextView  productSubTotal;
+public class CarrinhoComprasActivity extends BaseClienteActivity  {
+    private TextView productSubTotal;
     private Button sendProof;
+    private CheckBox terms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +60,13 @@ public class CarrinhoComprasActivity extends AppCompatActivity {
 
     }
 
-    protected boolean checkUserConnection(){
+    protected boolean checkUserConnection() {
 
         return clientSession != null;
     }
 
 
-    protected void sendMessage(){
+    protected void sendMessage() {
         sendOrder();
         String numeroTelefone = "5571983579082";
 
@@ -100,37 +103,45 @@ public class CarrinhoComprasActivity extends AppCompatActivity {
         }
     }
 
-    private void setupListeners(){
+    private void setupListeners() {
         sendProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkUserConnection()){
-                    sendMessage();
+                if (checkTerms()) {
+                    if (checkUserConnection()) {
+                        sendMessage();
+                    } else {
+                        runOnUiThread(() -> {
+                            Intent startLogin = new Intent(CarrinhoComprasActivity.this, LoginActivity.class);
+                            startActivity(startLogin);
+                            Toast.makeText(CarrinhoComprasActivity.this, "Faça o login para continuar", Toast.LENGTH_SHORT).show();
+                        });
+                    }
                 } else {
-                    runOnUiThread(()->{
-                        Intent startLogin = new Intent(CarrinhoComprasActivity.this, LoginActivity.class);
-                        startActivity(startLogin);
-                        Toast.makeText(CarrinhoComprasActivity.this, "Faça o login para continuar", Toast.LENGTH_SHORT).show();
+                    runOnUiThread(() -> {
+                        Toast.makeText(CarrinhoComprasActivity.this, "Por favor, aceite os termos de uso.", Toast.LENGTH_SHORT).show();
                     });
                 }
             }
         });
 
     }
+
     private void initializeUI() {
         this.productSubTotal = findViewById(R.id.txtSubtotal);
         this.sendProof = findViewById(R.id.btnFinalizarCompra);
+        this.terms = findViewById(R.id.checkTermos);
     }
 
-    private void calculateAllProduct(){
+    private void calculateAllProduct() {
         BigDecimal subCalculate = BigDecimal.ZERO;
-        for(ItemPedido requestCart : listCart){
+        for (ItemPedido requestCart : listCart) {
             subCalculate = subCalculate.add(requestCart.getProduto().getPreco());
         }
         productSubTotal.setText(String.valueOf(subCalculate));
     }
 
-    private void sendOrder(){
+    private void sendOrder() {
         OrderRepository.registerOrder(this, new OrderRepository.RegisterOrderCallback() {
             @Override
             public void onSuccess(String order) {
@@ -143,5 +154,9 @@ public class CarrinhoComprasActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean checkTerms() {
+        return terms.isChecked();
     }
 }
