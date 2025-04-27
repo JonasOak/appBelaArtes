@@ -1,10 +1,13 @@
 package com.example.belaartes.ui.comum;
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +23,21 @@ public class BaseClienteActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private EditText edtBuscar;
+    private ImageView imgSearch;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (this instanceof CarrinhoComprasActivity) {
+            edtBuscar.setVisibility(View.GONE);
+            imgSearch.setVisibility(View.GONE);
+        } else {
+            imgSearch.setVisibility(View.VISIBLE);
+            edtBuscar.setVisibility(View.VISIBLE);
+
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +45,7 @@ public class BaseClienteActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         edtBuscar = findViewById(R.id.edtBuscar);
-
+        imgSearch = findViewById(R.id.icBuscar);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
