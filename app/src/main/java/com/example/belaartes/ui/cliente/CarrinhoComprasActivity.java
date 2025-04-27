@@ -27,6 +27,7 @@ import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.OrderRepository;
 import com.example.belaartes.data.repository.ProdutoRepository;
 import com.example.belaartes.ui.auth.LoginActivity;
+import com.example.belaartes.ui.comum.BaseClienteActivity;
 
 import java.math.BigDecimal;
 import java.net.URLEncoder;
