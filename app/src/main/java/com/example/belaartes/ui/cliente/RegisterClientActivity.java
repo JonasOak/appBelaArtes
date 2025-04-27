@@ -15,10 +15,13 @@ import com.example.belaartes.data.model.entities.Cep;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.repository.CepRepository;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterClientActivity extends AppCompatActivity {
     private EditText name, cpf, phone, logradouro, numero, bairro, cep;
-    private Button next, searchCep;
+//    private Button next, searchCep;
+    private TextInputLayout tilCep;
+    private Button next;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,42 +40,43 @@ public class RegisterClientActivity extends AppCompatActivity {
         this.bairro = findViewById(R.id.register_city_bairro);
         this.cep = findViewById(R.id.register_city_cep);
         this.next = findViewById(R.id.btn_register_proximo);
-        this.searchCep = findViewById(R.id.btn_search_Cep);
+        this.tilCep = findViewById(R.id.til_cep);
+//        this.searchCep = findViewById(R.id.btn_search_Cep);
     }
 
     private void setupListeners() {
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkDate()){
-                    Cliente client = new Cliente(name.getText().toString(), cpf.getText().toString(), phone.getText().toString(), logradouro.getText().toString(),numero.getText().toString() , bairro.getText().toString(), cep.getText().toString());
-                    Intent nextDate = new Intent(RegisterClientActivity.this, RegisterLoginActivity.class);
-                    nextDate.putExtra("clientRegister", client);
-                    startActivity(nextDate);
-
-                }
+        next.setOnClickListener(v -> {
+            if (checkDate()) {
+                Cliente client = new Cliente(
+                        name.getText().toString(),
+                        cpf.getText().toString(),
+                        phone.getText().toString(),
+                        logradouro.getText().toString(),
+                        numero.getText().toString(),
+                        bairro.getText().toString(),
+                        cep.getText().toString()
+                );
+                Intent nextDate = new Intent(RegisterClientActivity.this, RegisterLoginActivity.class);
+                nextDate.putExtra("clientRegister", client);
+                startActivity(nextDate);
             }
         });
-        searchCep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CepRepository.searchCep(RegisterClientActivity.this, cep.getText().toString(), new CepRepository.ViaCepCallback() {
-                    @Override
-                    public void onSuccess(Cep searchCep) {
-                        if(searchCep != null){
-                            logradouro.setText(searchCep.getLogradouro());
-                            bairro.setText(searchCep.getBairro());
-                        }
-                    }
 
-                    @Override
-                    public void onError(String error) {
-                        runOnUiThread(()->{
-                            Toast.makeText(RegisterClientActivity.this, "Cep não encontrado", Toast.LENGTH_SHORT).show();
-                        });
+        tilCep.setEndIconOnClickListener(v -> {
+            CepRepository.searchCep(RegisterClientActivity.this, cep.getText().toString(), new CepRepository.ViaCepCallback() {
+                @Override
+                public void onSuccess(Cep searchCep) {
+                    if (searchCep != null) {
+                        logradouro.setText(searchCep.getLogradouro());
+                        bairro.setText(searchCep.getBairro());
                     }
-                });
-            }
+                }
+
+                @Override
+                public void onError(String error) {
+                    runOnUiThread(() -> Toast.makeText(RegisterClientActivity.this, "Cep não encontrado", Toast.LENGTH_SHORT).show());
+                }
+            });
         });
     }
 

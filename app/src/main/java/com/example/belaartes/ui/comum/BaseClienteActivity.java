@@ -16,6 +16,7 @@ import com.example.belaartes.R;
 import com.example.belaartes.ui.auth.LoginActivity;
 import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
+import com.example.belaartes.ui.cliente.HomeClienteActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BaseClienteActivity extends AppCompatActivity {
@@ -29,19 +30,19 @@ public class BaseClienteActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (this instanceof CarrinhoComprasActivity) {
+        if (this instanceof CarrinhoComprasActivity || this instanceof LoginActivity) {
             edtBuscar.setVisibility(View.GONE);
             imgSearch.setVisibility(View.GONE);
         } else {
-            imgSearch.setVisibility(View.VISIBLE);
             edtBuscar.setVisibility(View.VISIBLE);
-
+            imgSearch.setVisibility(View.VISIBLE);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(R.layout.menu_cliente); // Usa o layout que tem o topo + menu inferior
+        super.setContentView(R.layout.menu_cliente);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         edtBuscar = findViewById(R.id.edtBuscar);
@@ -51,12 +52,20 @@ public class BaseClienteActivity extends AppCompatActivity {
 
             if (itemId == R.id.nav_home) {
                 runOnUiThread(()->{
-                    Intent screenCheckout = new Intent(BaseClienteActivity.this, CatalogoProdutosActivity.class);
+                    Intent screenCheckout = new Intent(BaseClienteActivity.this, HomeClienteActivity.class);
                     startActivity(screenCheckout);
                     Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 });
                 return true;
-            } else if (itemId == R.id.nav_carrinho) {
+            } else if (itemId == R.id.nav_produtos) {
+                runOnUiThread(()->{
+                    Intent screenCheckout = new Intent(BaseClienteActivity.this, CatalogoProdutosActivity.class);
+                    startActivity(screenCheckout);
+                    Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
+            });
+            return true;
+            }
+            else if (itemId == R.id.nav_carrinho) {
                 runOnUiThread(()->{
                     Intent screenCheckout = new Intent(BaseClienteActivity.this, CarrinhoComprasActivity.class);
                     startActivity(screenCheckout);

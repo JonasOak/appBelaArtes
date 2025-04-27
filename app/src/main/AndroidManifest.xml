@@ -15,8 +15,10 @@
         android:theme="@style/Theme.BelaArtes"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity android:name=".ui.cliente.HomeClienteActivity"
+                  android:exported="false"/>
         <activity
-            android:name=".menu_cliente"
+            android:name=".ui.comum.BaseClienteActivity"
             android:exported="false" />
         <activity
             android:name=".ui.cliente.CheckoutActivity"

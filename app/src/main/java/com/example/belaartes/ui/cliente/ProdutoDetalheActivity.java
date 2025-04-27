@@ -18,8 +18,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
+import com.example.belaartes.ui.comum.BaseClienteActivity;
 
-public class ProdutoDetalheActivity extends AppCompatActivity {
+public class ProdutoDetalheActivity extends BaseClienteActivity {
 
     private ImageView imgProduto;
     private TextView tvNome, tvDescricao, tvCategoria, tvPreco, tvEstoque;
