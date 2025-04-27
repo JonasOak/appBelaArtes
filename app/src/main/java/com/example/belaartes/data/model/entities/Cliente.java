@@ -17,6 +17,13 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
+    public Cliente(String nome, String cpf, String telefone, String cep) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.cep = cep;
+    }
+
     public Cliente(String nome, String cpf, String telefone, String logradouro, String numero, String bairro, String cep) {
         this.nome = nome;
         this.cpf = cpf;

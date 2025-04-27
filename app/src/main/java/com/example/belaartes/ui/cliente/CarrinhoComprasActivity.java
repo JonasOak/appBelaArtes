@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,18 +24,19 @@ import com.example.belaartes.R;
 import com.example.belaartes.adapters.CarrinhoAdapter;
 import com.example.belaartes.data.model.entities.ItemPedido;
 import com.example.belaartes.data.model.entities.Produto;
+import com.example.belaartes.data.repository.OrderRepository;
 import com.example.belaartes.data.repository.ProdutoRepository;
 import com.example.belaartes.ui.auth.LoginActivity;
 
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class CarrinhoComprasActivity extends AppCompatActivity {
-    private ImageView imgProduct;
-    private TextView productName, productDescription, productAmount, productMoney, productSubTotal;
+    private TextView  productSubTotal;
     private Button sendProof;
 
     @Override
@@ -61,6 +63,7 @@ public class CarrinhoComprasActivity extends AppCompatActivity {
 
 
     protected void sendMessage(){
+        sendOrder();
         String numeroTelefone = "5571983579082";
 
         StringBuilder mensagem = new StringBuilder();
@@ -126,5 +129,18 @@ public class CarrinhoComprasActivity extends AppCompatActivity {
         productSubTotal.setText(String.valueOf(subCalculate));
     }
 
+    private void sendOrder(){
+        OrderRepository.registerOrder(this, new OrderRepository.RegisterOrderCallback() {
+            @Override
+            public void onSuccess(String order) {
+                Toast.makeText(CarrinhoComprasActivity.this, order, Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onError(String error) {
+                Toast.makeText(CarrinhoComprasActivity.this, error, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 }
