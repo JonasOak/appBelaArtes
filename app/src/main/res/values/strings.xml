@@ -15,5 +15,29 @@
     <string name="cargo">Cargo</string>
     <string name="salvar">Salvar</string>
     <string name="editar_usu_rio">Editar usuário</string>
+    <string name="terms">Eu li e concordo com os termos de uso</string>
+    <string name="terms_txt">Termos de uso</string>
+    <!-- Termos de compra -->
+    <string name="termo_description">
+Termo de Compra e Redirecionamento\n\n
+1. Aceite dos Termos:\n
+Ao concluir sua compra neste site, o cliente concorda com os termos aqui descritos e autoriza o redirecionamento para a nossa loja virtual no WhatsApp para finalização e confirmação do pedido.\n\n
+2. Processamento do Pedido:\n
+Após a seleção dos produtos e a finalização da compra no site, o cliente será encaminhado automaticamente para o WhatsApp, onde nossa equipe dará continuidade ao atendimento, confirmação de dados, formas de pagamento e prazo de entrega.\n\n
+3. Condições de Venda:\n
+A venda somente será considerada concluída após a confirmação de todas as informações no WhatsApp. Reservamo-nos o direito de confirmar preços, prazos e disponibilidade de estoque durante o atendimento.\n\n
+4. Privacidade e Segurança:\n
+Todas as informações fornecidas pelo cliente serão utilizadas exclusivamente para o atendimento da compra e não serão compartilhadas com terceiros, exceto quando necessário para a entrega ou por exigência legal.\n\n
+5. Cancelamento e Alterações:\n
+O cliente poderá cancelar ou alterar seu pedido durante o atendimento no WhatsApp, antes da efetivação do pagamento. Após o pagamento confirmado, aplicam-se nossas políticas de troca e devolução.\n\n
+6. Atendimento:\n
+Nosso time estará disponível para esclarecer dúvidas, ajustar pedidos e fornecer suporte através do atendimento pelo WhatsApp.\n\n
+Ao finalizar a compra, você concorda com estes termos e será redirecionado para nossa loja virtual no WhatsApp.\n\n
+Agradecemos pela sua preferência!
+</string>
+
+
+
+
     <!--    fim-->
 </resources>

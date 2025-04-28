@@ -88,7 +88,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Estoque: 0"
                 app:layout_constraintTop_toBottomOf="@id/tvCategoria"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"/>
 
             <!-- Ícone de Carrinho no canto direito -->
             <!-- Ícone de Carrinho mais bonito e afastado -->

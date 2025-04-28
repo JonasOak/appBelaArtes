@@ -10,7 +10,7 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,6 +83,8 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+
             <!-- Botão Próximo -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_register_finish"
@@ -94,7 +96,11 @@
                 android:backgroundTint="@color/rosa_tracejado"
                 android:textColor="@color/white" />
         </LinearLayout>
+
+
+
     </ScrollView>
+
 
     <!-- Botão Voltar -->
     <ImageView
