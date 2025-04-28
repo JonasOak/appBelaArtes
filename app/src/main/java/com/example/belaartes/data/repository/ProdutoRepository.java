@@ -79,7 +79,7 @@ public class ProdutoRepository {
                             produto.setCategoria(obj.getString("categoria"));
                             produto.setPreco(new BigDecimal(obj.getString("preco")));
                             produto.setImagem(obj.getString("imagemBase64"));
-                            produto.setEstoque(obj.getInt("estoque"));
+                          //  produto.setEstoque(obj.getInt("estoque"));
 
                             lista.add(produto);
                         } catch (Exception e) {

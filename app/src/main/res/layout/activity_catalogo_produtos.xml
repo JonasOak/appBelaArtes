@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,83 +8,86 @@
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- IMAGEM EM CIMA DO CARD -->
+        <ImageView
+            android:id="@+id/imgProduto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="Imagem do Produto"
+            android:scaleType="centerCrop" />
+
+        <!-- CONTEÚDO ABAIXO DA IMAGEM -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
-                <!-- IMAGEM EM CIMA DO CARD -->
-                <ImageView
-                    android:id="@+id/imgProduto"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="Imagem do Produto" />
+            <!-- INFORMAÇÕES DO PRODUTO -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <!-- CONTEÚDO ABAIXO DA IMAGEM -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvNome"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
-                    android:gravity="center_vertical">
+                    android:text="Bolsa"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                        <!-- INFORMAÇÕES DO PRODUTO -->
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvDescricao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bolsa rosa"
+                    android:textSize="14sp" />
 
-                                <TextView
-                                    android:id="@+id/tvNome"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Bolsa"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvCategoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bolsa"
+                    android:textSize="14sp" />
 
-                                <TextView
-                                    android:id="@+id/tvDescricao"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Bolsa rosa"
-                                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/tvPreco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 49.99"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                                <TextView
-                                    android:id="@+id/tvCategoria"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Bolsa"
-                                    android:textSize="14sp" />
 
-                                <TextView
-                                    android:id="@+id/tvPreco"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="R$ 49.99"
-                                    android:textColor="@android:color/holo_green_dark"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                <!-- ESTOQUE
+                    <TextView
+                        android:id="@+id/tvEstoque"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estoque: 15"
+                        android:textSize="12sp" />
+                -->
+            </LinearLayout>
 
-                                <TextView
-                                    android:id="@+id/tvEstoque"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Estoque: 15"
-                                    android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <!-- ÍCONE DO CARRINHO À DIREITA -->
-                        <ImageButton
-                            android:id="@+id/btnAdicionarCarrinho"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/shopping_cart_simple"
-                            android:contentDescription="Adicionar ao carrinho"
-                            android:layout_marginStart="8dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:padding="4dp"/>
-                </LinearLayout>
+            <!-- ÍCONE DO CARRINHO À DIREITA -->
+            <ImageButton
+                android:id="@+id/btnAdicionarCarrinho"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Adicionar ao carrinho"
+                android:padding="4dp"
+                android:src="@drawable/shopping_cart_simple" />
         </LinearLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

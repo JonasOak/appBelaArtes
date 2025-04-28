@@ -119,10 +119,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Eu li e concordo com os termos de uso"
+                android:text="@string/terms"
                 android:textColor="#666666"
-                android:textSize="14sp" />
+                android:clickable="true"
+                android:focusable="true"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+
+
         </LinearLayout>
+
 
         <!-- Finalizar compra -->
         <com.google.android.material.button.MaterialButton
@@ -134,5 +141,7 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textAllCaps="true" />
+
     </LinearLayout>
+
 </ScrollView>
