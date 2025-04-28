@@ -66,7 +66,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         holder.preco.setText(String.format("R$ %.2f", produto.getPreco()));
         holder.descricao.setText(produto.getDescricao());
         holder.categoria.setText(produto.getCategoria());
-        holder.estoque.setText("Estoque: " + produto.getEstoque());
+      //  holder.estoque.setText("Estoque: " + produto.getEstoque());
 
 
         String imagemBase64 = produto.getImagem();
