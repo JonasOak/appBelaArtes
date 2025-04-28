@@ -14,12 +14,12 @@ import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Cep;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.repository.CepRepository;
+import com.example.belaartes.ui.util.MaskUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterClientActivity extends AppCompatActivity {
     private EditText name, cpf, phone, logradouro, numero, bairro, cep;
-//    private Button next, searchCep;
     private TextInputLayout tilCep;
     private Button next;
 
@@ -28,6 +28,7 @@ public class RegisterClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_register);
         initializeUi();
+        initMask();
         setupListeners();
     }
 
@@ -41,9 +42,12 @@ public class RegisterClientActivity extends AppCompatActivity {
         this.cep = findViewById(R.id.register_city_cep);
         this.next = findViewById(R.id.btn_register_proximo);
         this.tilCep = findViewById(R.id.til_cep);
-//        this.searchCep = findViewById(R.id.btn_search_Cep);
     }
 
+    private void initMask(){
+        this.phone.addTextChangedListener(MaskUtils.insertPhoneMask(phone));
+        this.cpf.addTextChangedListener(MaskUtils.insertCpfMask(cpf));
+    }
     private void setupListeners() {
         next.setOnClickListener(v -> {
             if (checkDate()) {
@@ -80,45 +84,49 @@ public class RegisterClientActivity extends AppCompatActivity {
         });
     }
 
-
-    private boolean checkDate() {
-        if (name.getText() == null) {
-            name.setError("Nome não pode ser vazio");
-            return false;
-        } else if (name.getText().length() <= 10) {
-            name.setError("Nome deve ter mais de 10 caracteres");
+    protected boolean checkPersonalInformation() {
+        if (name.getText().toString().isEmpty() || name.getText().length() < 10) {
+            name.setError("Preencha seu nome completo.");
             return false;
         }
-
-        if (cpf.getText() == null) {
+        if (cpf.getText().toString().isEmpty()) {
             cpf.setError("CPF não pode ser vazio");
             return false;
 
         }
 
-        if (phone.getText() == null) {
+        if (phone.getText().toString().isEmpty() || phone.getText().length() < 8) {
             phone.setError("Telefone não pode ser vazio");
             return false;
-        } else if (phone.getText().length() < 8) {
-            phone.setError("Telefone deve ter pelo menos 8 caracteres");
-            return false;
         }
+        return true;
+    }
 
-        if (logradouro.getText() == null) {
+    protected boolean checkCityInformation() {
+        if (logradouro.getText().toString().isEmpty()) {
             logradouro.setError("Logradouro não pode ser vazio");
             return false;
         }
 
-        if (numero.getText() == null) {
+        if (numero.getText().toString().isEmpty()) {
             numero.setError("Número não pode ser vazio");
             return false;
         }
 
-        if (cep.getText() == null) {
+        if (cep.getText().toString().isEmpty()) {
             cep.setError("CEP não pode ser vazio");
             return false;
         }
         return true;
+    }
+
+    private boolean checkDate() {
+        if(checkPersonalInformation()){
+            if(checkCityInformation()){
+                return true ;
+            }
+        }
+        return false;
     }
 
 }
