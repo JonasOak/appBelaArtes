@@ -2,7 +2,6 @@ package com.example.belaartes.ui.cliente;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,8 +13,7 @@ import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Cep;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.repository.CepRepository;
-import com.example.belaartes.ui.util.MaskUtils;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.belaartes.data.util.MaskUtils;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterClientActivity extends AppCompatActivity {
