@@ -91,7 +91,7 @@
 
             <!-- Ícone de Carrinho no canto direito -->
             <!-- Ícone de Carrinho mais bonito e afastado -->
-            <ImageView
+            <ImageButton
                 android:id="@+id/btnAddCarrinho"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
