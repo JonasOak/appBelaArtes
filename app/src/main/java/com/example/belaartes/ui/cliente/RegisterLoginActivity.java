@@ -2,6 +2,7 @@ package com.example.belaartes.ui.cliente;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,8 @@ import com.example.belaartes.ui.auth.LoginActivity;
 public class RegisterLoginActivity extends AppCompatActivity {
 
     private EditText email, password, repeatPassword;
-    private Button finish;
+    private Button finish, showPasswordAndRepeatPassword;
+    private boolean showPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,9 +37,18 @@ public class RegisterLoginActivity extends AppCompatActivity {
         this.password = findViewById(R.id.register_password);
         this.repeatPassword = findViewById(R.id.register_repeat_password);
         this.finish = findViewById(R.id.btn_register_finish);
+        this.showPasswordAndRepeatPassword = findViewById(R.id.register_login_show_password);
+
+        this.showPassword = false;
     }
 
     private void setupListeners() {
+        showPasswordAndRepeatPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonShowPassword();
+            }
+        });
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +67,18 @@ public class RegisterLoginActivity extends AppCompatActivity {
     protected Usuario getUserFormat() {
         return new Usuario(email.getText().toString().trim(), password.getText().toString().trim());
     }
-
+    private void buttonShowPassword(){
+        if(!showPassword){
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            repeatPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            this.showPassword = true;
+        } else {
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            repeatPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            this.showPassword = false;
+        }
+        password.setSelection(password.getText().length());
+    }
     private boolean checkDate(String email, String password, String repeatPassword) {
         if (email == null || email.isEmpty()) {
             this.email.setError("Email não pode ser vazio.");
@@ -104,5 +126,8 @@ public class RegisterLoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 }
