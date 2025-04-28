@@ -33,7 +33,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp">
                 <EditText
-                    android:id="@+id/Cpf"
+                    android:id="@+id/cpf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/caixa_de_texto"
@@ -42,6 +42,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/btnProcurar"
                 android:layout_width="wrap_content"
                 android:minWidth="150dp"
                 android:layout_height="wrap_content"
@@ -60,7 +61,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Nome"
+                android:id="@+id/nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
@@ -75,7 +76,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Telefone"
+                android:id="@+id/telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
@@ -90,7 +91,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Cep"
+                android:id="@+id/cep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
@@ -105,11 +106,11 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Logadouro"
+                android:id="@+id/logradouro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
-                android:hint="Logadouro"
+                android:hint="Logradouro"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +121,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Numero"
+                android:id="@+id/numero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
@@ -135,7 +136,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Bairro"
+                android:id="@+id/bairro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
@@ -150,7 +151,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/Complemento"
+                android:id="@+id/complemento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/caixa_de_texto"
@@ -168,70 +169,107 @@
             android:gravity="center_horizontal"
             android:layout_marginTop="20dp"/>
 
+        <!--    Lista de compras    -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@color/rosa_tracejado">
-            <ImageView
-                android:id="@+id/imgProduto1"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="Imagem do produto"/>
-            <!--                android:src=""/>-->
+            android:orientation="vertical"
+            android:id="@+id/listaCompras">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
-                <TextView
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/rosa_tracejado">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginRight="16dp"
+                    android:contentDescription="Imagem do produto"/>
+                <!--                android:src=""/>-->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
-                    android:textSize="15dp"
-                    android:textColor="@color/white"/>
-                <TextView
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nome 1"
+                        android:textSize="15dp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="R$"
+                        android:textSize="15dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/rosa_tracejado">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginRight="16dp"
+                    android:contentDescription="Imagem do produto"/>
+                <!--                android:src=""/>-->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="R$"
-                    android:textSize="15dp"
-                    android:textColor="@color/white"/>
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nome 2"
+                        android:textSize="15dp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="R$"
+                        android:textSize="15dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@color/rosa_tracejado">
-            <ImageView
-                android:id="@+id/imgProduto2"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="Imagem do produto"/>
-            <!--                android:src=""/>-->
-            <LinearLayout
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:id="@+id/areaCopia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nome"
-                    android:textSize="15dp"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="R$"
-                    android:textSize="15dp"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
+                android:minHeight="100dp"
+                android:background="@drawable/caixa_de_texto"
+                android:text="Complemento"
+                android:padding="10dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/btnCopia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_content_copy_24"/>
+            <TextView
+                android:id="@+id/stsCopia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"/>
         </LinearLayout>
 
         <Button

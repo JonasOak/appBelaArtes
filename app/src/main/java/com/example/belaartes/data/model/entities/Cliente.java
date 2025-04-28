@@ -11,11 +11,12 @@ public class Cliente {
     private String bairro;
     private String cep;
     private String complemento;
+    private Usuario usuario;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nome, String cpf, String telefone, String logradouro, String numero, String bairro, String cep, String complemento) {
+    public Cliente(int idCliente, String nome, String cpf, String telefone, String logradouro, String numero, String bairro, String cep, String complemento, Usuario usuario) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.cpf = cpf;
@@ -25,6 +26,7 @@ public class Cliente {
         this.bairro = bairro;
         this.cep = cep;
         this.complemento = complemento;
+        this.usuario = usuario;
     }
 
     public int getIdCliente() {
@@ -98,4 +100,8 @@ public class Cliente {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    public Usuario getUsuario() {return usuario;}
+
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }
