@@ -40,6 +40,11 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
         listenToText();
     }
 
+    @Override
+    protected int getSelectedBottomNavigationItemId() {
+        return R.id.nav_produtos;
+    }
+
     protected void initializeUI(){
         recyclerView = findViewById(R.id.rvProdutos);
         search_text = findViewById(R.id.edtBuscar);
@@ -90,5 +95,10 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }
