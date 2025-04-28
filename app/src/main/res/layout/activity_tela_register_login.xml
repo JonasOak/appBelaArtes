@@ -86,6 +86,13 @@
 
 
             <!-- Botão Próximo -->
+            <Button
+                android:id="@+id/register_login_show_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/rosa_tracejado"
+                android:text="Mostrar senha" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_register_finish"
                 android:layout_width="match_parent"

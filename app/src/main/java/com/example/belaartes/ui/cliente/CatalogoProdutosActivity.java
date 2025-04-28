@@ -1,9 +1,13 @@
 package com.example.belaartes.ui.cliente;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,17 +27,24 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
 
     private RecyclerView recyclerView;
     private ProdutoAdapter adapter;
+    private EditText search_text;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_produtos);
+        initializeUI();
+        loadRecyclerView();
+        loadProducts();
+        listenToText();
+    }
 
+    protected void initializeUI(){
         recyclerView = findViewById(R.id.rvProdutos);
-
-
-
-        // GridLayoutManager com 2 colunas
+        search_text = findViewById(R.id.edtBuscar);
+    }
+    private void loadRecyclerView(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setPadding(0, 200, 0, 0);
@@ -41,13 +52,9 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
         recyclerView.setClipChildren(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.pink));
-
-        carregarProdutos();
     }
 
-
-
-    private void carregarProdutos() {
+    private void loadProducts() {
         ProdutoRepository.getAllProdutos(this, new ProdutoRepository.ProdutoCallback() {
             @Override
             public void onSuccess(List<Produto> produtos) {
@@ -62,6 +69,25 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
             @Override
             public void onError(String error) {
                 Toast.makeText(CatalogoProdutosActivity.this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void listenToText() {
+        search_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (adapter != null) {
+                    adapter.filtrar(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }
