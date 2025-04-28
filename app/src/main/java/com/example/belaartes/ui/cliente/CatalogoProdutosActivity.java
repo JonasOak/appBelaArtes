@@ -52,7 +52,7 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
     private void loadRecyclerView(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setPadding(0, 200, 0, 0);
+        recyclerView.setPadding(0, 0, 0, 0);
         recyclerView.setClipToPadding(false);
         recyclerView.setClipChildren(false);
         recyclerView.setHasFixedSize(true);

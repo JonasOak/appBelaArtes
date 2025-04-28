@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_usuario);
+        setContentView(R.layout.activity_splash);
 
         // Aguarda 2 segundos e depois redireciona para ListaProdutosActivity
         new Handler().postDelayed(new Runnable() {
