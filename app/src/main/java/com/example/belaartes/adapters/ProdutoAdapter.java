@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +38,10 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
      * listCard adicionar uma lista de produtos
      */
     private List<Produto> produtos;
+
+    private List<Produto> originListProduct;
+
+
     private Context context;
     private OnProdutoClickListener listener;
 
@@ -46,6 +51,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     public ProdutoAdapter(List<Produto> produtos, Context context, OnProdutoClickListener listener) {
         this.produtos = produtos;
+        this.originListProduct = new ArrayList<>(produtos);
         this.context = context;
         this.listener = listener;
     }
@@ -105,6 +111,25 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         return produtos.size();
     }
 
+
+    public void filtrar(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            produtos = new ArrayList<>(originListProduct);
+        } else {
+            String filtro = texto.toLowerCase();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                produtos = originListProduct.stream()
+                        .filter(p -> p.getNome().toLowerCase().contains(filtro) ||
+                                p.getDescricao().toLowerCase().contains(filtro) ||
+                                p.getCategoria().toLowerCase().contains(filtro))
+                        .toList();
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+
     static class ProdutoViewHolder extends RecyclerView.ViewHolder {
         ImageView imagem;
         TextView nome, preco, descricao, categoria, estoque;
@@ -123,4 +148,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
 
     }
+
+
+
+
 }
