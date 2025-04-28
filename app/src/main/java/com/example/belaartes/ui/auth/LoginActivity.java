@@ -21,8 +21,9 @@ import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 import com.example.belaartes.ui.cliente.RegisterClientActivity;
+import com.example.belaartes.ui.comum.BaseClienteActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseClienteActivity {
 
     private EditText editEmail, editSenha;
     private Button btnLogin;

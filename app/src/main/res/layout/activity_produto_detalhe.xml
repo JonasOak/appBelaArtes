@@ -7,66 +7,103 @@
     android:background="@color/pink"
     android:padding="16dp">
 
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:id="@+id/imgProduto"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="centerCrop" />
-
-        <TextView
-            android:id="@+id/tvNome"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Nome do Produto"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Descrição do Produto" />
+            <!-- Imagem do Produto -->
+            <ImageView
+                android:id="@+id/imgProduto"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tvCategoria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Categoria" />
+            <!-- Nome do Produto -->
+            <TextView
+                android:id="@+id/tvNome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Nome do Produto"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/imgProduto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tvPreco"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="R$ 0.00"
-            android:textColor="@android:color/holo_green_dark"
-            android:textStyle="bold" />
+            <!-- Descrição -->
+            <TextView
+                android:id="@+id/tvDescricao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Descrição do Produto"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tvNome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tvEstoque"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Estoque: 0" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            <!-- Categoria -->
+            <TextView
+                android:id="@+id/tvCategoria"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Categoria"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tvDescricao"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Preço -->
+            <TextView
+                android:id="@+id/tvPreco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="R$ 0.00"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoria"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Estoque -->
+            <TextView
+                android:id="@+id/tvEstoque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Estoque: 0"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoria"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Ícone de Carrinho no canto direito -->
+            <!-- Ícone de Carrinho mais bonito e afastado -->
+            <ImageView
+                android:id="@+id/btnAddCarrinho"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Adicionar ao Carrinho"
+                android:padding="8dp"
+                android:src="@drawable/shopping_cart_simple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvPreco" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>
-
-
