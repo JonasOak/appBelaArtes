@@ -1,5 +1,6 @@
 package com.example.belaartes.ui.cliente;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,16 +25,16 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
     private RecyclerView recyclerView;
     private ProdutoAdapter adapter;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_produtos);
 
         recyclerView = findViewById(R.id.rvProdutos);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-
-
-        // GridLayoutManager com 2 colunas
+        // GridLayoutManager com 1 coluna
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setPadding(0, 200, 0, 0);
@@ -42,10 +43,13 @@ public class CatalogoProdutosActivity extends BaseClienteActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.pink));
 
+        //setSelectedItem(R.id.nav_produtos);
         carregarProdutos();
     }
 
-
+    protected int getSelectedBottomNavigationItemId() {
+        return R.id.nav_produtos;
+    }
 
     private void carregarProdutos() {
         ProdutoRepository.getAllProdutos(this, new ProdutoRepository.ProdutoCallback() {

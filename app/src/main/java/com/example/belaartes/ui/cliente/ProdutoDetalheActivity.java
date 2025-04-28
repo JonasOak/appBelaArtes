@@ -51,6 +51,11 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
         }
     }
 
+    @Override
+    protected int getSelectedBottomNavigationItemId() {
+        return R.id.nav_produtos;
+    }
+
     private void carregarProduto(int id) {
         ProdutoRepository.buscarProdutoPorId(this, id, new ProdutoRepository.ProdutoCallbackUnico() {
             @Override
@@ -76,5 +81,10 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
                 Toast.makeText(ProdutoDetalheActivity.this, error, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

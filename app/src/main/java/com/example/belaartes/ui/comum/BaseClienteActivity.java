@@ -19,12 +19,11 @@ import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 import com.example.belaartes.ui.cliente.HomeClienteActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BaseClienteActivity extends AppCompatActivity {
-
-
-    private BottomNavigationView bottomNavigationView;
+public abstract class BaseClienteActivity extends AppCompatActivity {
+    protected BottomNavigationView bottomNavigationView;
     private EditText edtBuscar;
     private ImageView imgSearch;
+    protected abstract int getSelectedBottomNavigationItemId();
 
     @Override
     protected void onResume() {
@@ -47,40 +46,35 @@ public class BaseClienteActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         edtBuscar = findViewById(R.id.edtBuscar);
         imgSearch = findViewById(R.id.icBuscar);
+
+        int selectedItemId = getSelectedBottomNavigationItemId();
+        if (selectedItemId != 0) {
+            bottomNavigationView.setSelectedItemId(selectedItemId);
+        }
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+            if (itemId == getSelectedBottomNavigationItemId()) {
+                return true;
+            }
 
+            Intent intent = null;
             if (itemId == R.id.nav_home) {
-                runOnUiThread(()->{
-                    Intent screenCheckout = new Intent(BaseClienteActivity.this, HomeClienteActivity.class);
-                    startActivity(screenCheckout);
-                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
-                });
-                return true;
+                intent = new Intent(this, HomeClienteActivity.class);
             } else if (itemId == R.id.nav_produtos) {
-                runOnUiThread(()->{
-                    Intent screenCheckout = new Intent(BaseClienteActivity.this, CatalogoProdutosActivity.class);
-                    startActivity(screenCheckout);
-                    Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
-            });
-            return true;
-            }
-            else if (itemId == R.id.nav_carrinho) {
-                runOnUiThread(()->{
-                    Intent screenCheckout = new Intent(BaseClienteActivity.this, CarrinhoComprasActivity.class);
-                    startActivity(screenCheckout);
-                    Toast.makeText(this, "Carrinho", Toast.LENGTH_SHORT).show();
-                });
-                return true;
+                intent = new Intent(this, CatalogoProdutosActivity.class);
+            } else if (itemId == R.id.nav_carrinho) {
+                intent = new Intent(this, CarrinhoComprasActivity.class);
             } else if (itemId == R.id.nav_conta) {
-                runOnUiThread(()->{
-                    Intent screenCheckout = new Intent(BaseClienteActivity.this, LoginActivity.class);
-                    startActivity(screenCheckout);
-                    Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
-                });
-                return true;
+                intent = new Intent(this, LoginActivity.class);
             }
 
+            if (intent != null) {
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+                finish();
+                return true;
+            }
             return false;
         });
     }

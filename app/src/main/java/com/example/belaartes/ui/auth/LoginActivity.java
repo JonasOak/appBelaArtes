@@ -47,6 +47,11 @@ public class LoginActivity extends BaseClienteActivity {
         redirecionaTelaCadastro();
     }
 
+    @Override
+    protected int getSelectedBottomNavigationItemId() {
+        return R.id.nav_conta;
+    }
+
     public void configurarEventos() {
         btnLogin.setOnClickListener(v -> {
             String email = editEmail.getText().toString().trim();
@@ -103,4 +108,8 @@ public class LoginActivity extends BaseClienteActivity {
         });
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
 }

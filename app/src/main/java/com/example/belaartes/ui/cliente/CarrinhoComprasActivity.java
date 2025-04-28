@@ -3,6 +3,7 @@ package com.example.belaartes.ui.cliente;
 import static com.example.belaartes.data.session.CheckoutSession.listCart;
 import static com.example.belaartes.data.session.ClientSession.clientSession;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,6 +44,7 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
     private Button sendProof;
     private CheckBox terms;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +54,19 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
         RecyclerView recyclerCarrinho = findViewById(R.id.recyclerCarrinho);
         recyclerCarrinho.setLayoutManager(new LinearLayoutManager(this));
         CarrinhoAdapter adapter = new CarrinhoAdapter(listCart);
+        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
+        //setSelectedItem(R.id.nav_carrinho);
         recyclerCarrinho.setAdapter(adapter);
         initializeUI();
         setupListeners();
         calculateAllProduct();
 
+    }
+
+    @Override
+    protected int getSelectedBottomNavigationItemId() {
+        return R.id.nav_carrinho;
     }
 
     protected boolean checkUserConnection() {
@@ -167,5 +176,10 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
 
     private boolean checkTerms() {
         return terms.isChecked();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

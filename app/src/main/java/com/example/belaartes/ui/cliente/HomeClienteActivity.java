@@ -31,6 +31,11 @@ public class HomeClienteActivity extends BaseClienteActivity {
         carregarProdutos();
     }
 
+    @Override
+    protected int getSelectedBottomNavigationItemId() {
+        return R.id.nav_home;
+    }
+
     private void carregarProdutos() {
         ProdutoRepository.getAllProdutos(this, new ProdutoRepository.ProdutoCallback() {
             @Override
@@ -68,6 +73,11 @@ public class HomeClienteActivity extends BaseClienteActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }
 
