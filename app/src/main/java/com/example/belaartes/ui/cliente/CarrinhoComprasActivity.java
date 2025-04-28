@@ -104,6 +104,15 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
     }
 
     private void setupListeners() {
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                runOnUiThread(()->{
+                  Intent terms = new Intent(CarrinhoComprasActivity.this, TermsActivity.class);
+                  startActivity(terms);
+                });
+            }
+        });
         sendProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
