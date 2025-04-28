@@ -1,4 +1,4 @@
-package com.example.belaartes.ui.util;
+package com.example.belaartes.data.util;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
