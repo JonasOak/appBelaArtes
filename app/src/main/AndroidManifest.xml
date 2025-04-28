@@ -68,7 +68,9 @@
         <activity
             android:name=".ui.cliente.TermsActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".ui.cliente.RecoverActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.auth.SplashActivity"
             android:exported="true">
