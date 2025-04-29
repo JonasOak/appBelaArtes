@@ -1,10 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,14 +14,14 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="24dp">
@@ -36,32 +35,26 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <ScrollView
+                <TextView
+                    android:id="@+id/text_termo_descricao"
                     android:layout_width="match_parent"
-                    android:layout_height="480dp"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/text_termo_descricao"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="@string/termo_description" />
-                </ScrollView>
-
+                    android:layout_height="wrap_content"
+                    android:text="@string/termo_description"
+                    android:scrollbars="vertical" />
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
-        <!-- Botão Próximo -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_terms_close"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/btn_principal"
             android:text="FECHAR"
-            app:cornerRadius="20dp"
-            android:backgroundTint="@color/rosa_tracejado"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>
-
