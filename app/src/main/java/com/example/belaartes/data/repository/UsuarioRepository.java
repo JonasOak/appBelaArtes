@@ -18,7 +18,7 @@ import java.util.List;
 
 public class UsuarioRepository {
 
-    private static final String BASE_URL = "http://10.0.2.2:8080/usuarios";
+    private static final String BASE_URL = "http://186.247.89.58:8080/usuarios";
     // http://10.0.2.2:8080/usuarios (localhost)
     // http://186.247.89.58:8080/usuarios (servidor Eduardo)
 
