@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
     private TextView tvNome, tvDescricao, tvCategoria, tvPreco, tvEstoque;
     private Produto produtoCart;
     private ImageButton addCart;
+    private Button close;
 
 
     @SuppressLint("MissingInflatedId")
@@ -56,8 +58,6 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
             carregarProduto(produtoId);
         }
         setupListeners();
-
-
     }
 
     private void initializeUi() {
@@ -69,9 +69,17 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
         tvEstoque = findViewById(R.id.tvEstoque);
         addCart = findViewById(R.id.btnAddCarrinho);
         this.produtoCart = new Produto();
+        this.close = findViewById(R.id.btn_product_datalhe_close);
     }
 
     private void setupListeners() {
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +109,6 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
                 tvCategoria.setText(produto.getCategoria());
                 tvPreco.setText(String.format("R$ %.2f", produto.getPreco()));
                 tvEstoque.setText("Estoque: " + produto.getEstoque());
-
                 String imagemBase64 = produto.getImagem();
                 if (imagemBase64 != null && !imagemBase64.isEmpty()) {
                     byte[] imagemBytes = Base64.decode(imagemBase64, Base64.DEFAULT);
