@@ -5,7 +5,9 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.belaartes.data.api.VolleySingleton;
 import com.example.belaartes.data.model.entities.Cliente;
+import com.example.belaartes.data.repository.UsuarioRepository;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +15,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarException;
+
+import com.example.belaartes.data.model.entities.Usuario;
 
 public class ClienteRepository {
 
@@ -79,7 +83,17 @@ public class ClienteRepository {
                             cliente.setBairro(obj.getString("bairro"));
                             cliente.setCep(obj.getString("cep"));
                             cliente.setComplemento(obj.getString("complemento"));
-//                            cliente.setUsuario(obj.getJSONObject("usuario"));
+                            UsuarioRepository.buscarUsuarioPorId(context, obj.getInt("usuario"), new UsuarioRepository.LoginCallback() {
+                                @Override
+                                public void onSuccess(Usuario usuario) {
+                                    cliente.setUsuario(usuario);
+                                }
+
+                                @Override
+                                public void onError(String errorMessage) {
+
+                                }
+                            });
 
                             lista.add(cliente);
                         } catch (Exception e) {
@@ -91,5 +105,7 @@ public class ClienteRepository {
                 },
                 error -> callback.onError("Erro na requisição: " + error.toString())
         );
+
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 }

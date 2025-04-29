@@ -91,4 +91,29 @@ public class UsuarioRepository {
         );
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
+
+    public static void buscarUsuarioPorId(Context context, int id, final LoginCallback callback) {
+        String url = BASE_URL + "/" + id;
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                response -> {
+                    try {
+                        Usuario usuario = new Usuario();
+                        usuario.setIdUsuario(response.getInt("id"));
+                        usuario.setEmail(response.getString("email"));
+                        usuario.setSenhaHash(response.getString("senha_hash"));
+                        usuario.setCargo(response.getString("cargo"));
+
+                        callback.onSuccess(usuario);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        callback.onError("Erro ao processar resposta do usuario");
+                    }
+                },
+                error -> callback.onError("Erro ao buscar usuario: " + error.toString())
+        );
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
 }
