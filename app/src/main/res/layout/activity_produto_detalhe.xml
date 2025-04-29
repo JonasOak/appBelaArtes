@@ -8,102 +8,121 @@
     android:background="@color/pink"
     app:cardUseCompatPadding="true">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true">
 
-            <!-- Imagem do Produto -->
-            <ImageView
-                android:id="@+id/imgProduto"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <!-- Nome do Produto -->
-            <TextView
-                android:id="@+id/tvNome"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Nome do Produto"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgProduto" />
+                android:padding="16dp">
 
-            <!-- Descrição -->
-            <TextView
-                android:id="@+id/tvDescricao"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Descrição do Produto"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvNome" />
+                <!-- Imagem do Produto -->
+                <ImageView
+                    android:id="@+id/imgProduto"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Categoria -->
-            <TextView
-                android:id="@+id/tvCategoria"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Categoria"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDescricao" />
+                <!-- Nome do Produto -->
+                <TextView
+                    android:id="@+id/tvNome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Nome do Produto"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgProduto" />
 
-            <!-- Preço -->
-            <TextView
-                android:id="@+id/tvPreco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="R$ 0.00"
-                android:textSize="18sp"
-                android:textColor="@android:color/holo_green_dark"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tvCategoria"
-                app:layout_constraintStart_toStartOf="parent" />
+                <!-- Descrição -->
+                <TextView
+                    android:id="@+id/tvDescricao"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Descrição do Produto"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvNome" />
 
-            <!-- Estoque -->
-            <TextView
-                android:id="@+id/tvEstoque"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Estoque: 0"
-                app:layout_constraintTop_toBottomOf="@id/tvCategoria"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="gone"/>
+                <!-- Categoria -->
+                <TextView
+                    android:id="@+id/tvCategoria"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Categoria"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescricao" />
 
-            <!-- Ícone de Carrinho no canto direito -->
-            <!-- Ícone de Carrinho mais bonito e afastado -->
-            <ImageButton
-                android:id="@+id/btnAddCarrinho"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="32dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Adicionar ao Carrinho"
-                android:padding="8dp"
-                android:src="@drawable/shopping_cart_simple"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <!-- Preço -->
+                <TextView
+                    android:id="@+id/tvPreco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="R$ 0.00"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCategoria" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                <!-- Estoque -->
+                <TextView
+                    android:id="@+id/tvEstoque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Estoque: 0"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCategoria" />
+
+                <!-- Ícone de Carrinho no canto direito -->
+                <!-- Ícone de Carrinho mais bonito e afastado -->
+                <ImageButton
+                    android:id="@+id/btnAddCarrinho"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Adicionar ao Carrinho"
+                    android:padding="8dp"
+                    android:src="@drawable/shopping_cart_simple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_product_datalhe_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/rosa_tracejado"
+            android:text="@string/fechar"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 </ScrollView>
