@@ -83,7 +83,7 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
 
     protected void sendMessage() {
         sendOrder();
-        String numeroTelefone = "5571983579082";
+        String numeroTelefone = "5571987611702";
 
         StringBuilder mensagem = new StringBuilder();
         mensagem.append("Olá, meu nome é ").append(clientSession.getNome()).append("!\n\n");
