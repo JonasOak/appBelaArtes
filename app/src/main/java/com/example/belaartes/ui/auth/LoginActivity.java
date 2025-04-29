@@ -1,11 +1,14 @@
 package com.example.belaartes.ui.auth;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +30,9 @@ public class LoginActivity extends BaseClienteActivity {
 
     private EditText editEmail, editSenha;
     private Button btnLogin;
+    private Switch saveSession;
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,19 @@ public class LoginActivity extends BaseClienteActivity {
         editEmail = findViewById(R.id.editEmail);
         editSenha = findViewById(R.id.editSenha);
         btnLogin = findViewById(R.id.btnLogin);
+        saveSession = findViewById(R.id.switch1);
 
         configurarEventos();
         redirecionaTelaCadastro();
+
+
+        preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        if (preferences.getBoolean("lembrar", false)) {
+            editEmail.setText(preferences.getString("email", ""));
+            editSenha.setText(preferences.getString("senha", ""));
+            saveSession.setChecked(true);
+        }
+
     }
 
     @Override
@@ -56,7 +72,6 @@ public class LoginActivity extends BaseClienteActivity {
         btnLogin.setOnClickListener(v -> {
             String email = editEmail.getText().toString().trim();
             String senha = editSenha.getText().toString().trim();
-
             if (email.isEmpty() || senha.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 return;
@@ -64,9 +79,9 @@ public class LoginActivity extends BaseClienteActivity {
             UsuarioRepository.Authenticar(this, email, senha, new UsuarioRepository.ClientLoginCallback() {
                 @Override
                 public void onSuccess(Cliente client) {
+                    saveSessionConfig(email, senha);
                     ClientSession.setClientSession(client);
-                    Log.d("Login response", "date " +client);
-                    finish();
+                    // Criar tela para perfil de usuario ou algo do tipo
                 }
 
                 @Override
@@ -97,6 +112,24 @@ public class LoginActivity extends BaseClienteActivity {
         });
     }
 
+    /**
+     * Lembrar senha
+     * @param email
+     * @param senha
+     */
+    private void saveSessionConfig(String email, String senha){
+        if (saveSession.isChecked()) {
+            // Salva email e senha
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("email", email);
+            editor.putString("senha", senha);
+            editor.putBoolean("lembrar", true);
+            editor.apply();
+        } else {
+            // Limpa os dados salvos
+            preferences.edit().clear().apply();
+        }
+    }
     public void redirecionaTelaCadastro() {
         Button btnCadastrar = findViewById(R.id.btnCadastrar);
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
