@@ -62,8 +62,8 @@
         </LinearLayout>
 
         <!-- Ícone da Lixeira -->
-        <ImageView
-            android:id="@+id/btnExcluir"
+        <ImageButton
+            android:id="@+id/btn_list_product_Excluir"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/trash"

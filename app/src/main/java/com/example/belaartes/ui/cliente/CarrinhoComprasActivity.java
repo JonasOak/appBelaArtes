@@ -40,9 +40,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class CarrinhoComprasActivity extends BaseClienteActivity  {
-    private TextView productSubTotal;
+    private TextView productSubTotal, viwTerms;
     private Button sendProof;
     private CheckBox terms;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,7 +54,12 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
 
         RecyclerView recyclerCarrinho = findViewById(R.id.recyclerCarrinho);
         recyclerCarrinho.setLayoutManager(new LinearLayoutManager(this));
-        CarrinhoAdapter adapter = new CarrinhoAdapter(listCart);
+        CarrinhoAdapter adapter = new CarrinhoAdapter(listCart, new CarrinhoAdapter.OnItemRemoveListener() {
+            @Override
+            public void onItemRemoved() {
+                calculateAllProduct();
+            }
+        });
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         //setSelectedItem(R.id.nav_carrinho);
@@ -113,7 +119,7 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
     }
 
     private void setupListeners() {
-        terms.setOnClickListener(new View.OnClickListener() {
+        viwTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 runOnUiThread(()->{
@@ -149,6 +155,7 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
         this.productSubTotal = findViewById(R.id.txtSubtotal);
         this.sendProof = findViewById(R.id.btnFinalizarCompra);
         this.terms = findViewById(R.id.checkTermos);
+        this.viwTerms = findViewById(R.id.viw_terms);
     }
 
     private void calculateAllProduct() {
