@@ -62,11 +62,11 @@ public class HomeClienteActivity extends BaseClienteActivity {
                         currentPage = 0; // Se chegar no final, volta pro começo
                     }
                     viewPagerProdutos.setCurrentItem(currentPage++, true);
-                    handler.postDelayed(this, 5000); // Troca a cada 5 segundos
+                    handler.postDelayed(this, 3000); // Troca a cada 3 segundos
                 }
             }
         };
-        handler.postDelayed(runnable, 5000); // começa depois de 5 segundos
+        handler.postDelayed(runnable, 3000); // começa depois de 3 segundos
     }
 
     @Override
