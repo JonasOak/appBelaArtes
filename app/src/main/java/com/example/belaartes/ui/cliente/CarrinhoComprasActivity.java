@@ -53,7 +53,12 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
 
         RecyclerView recyclerCarrinho = findViewById(R.id.recyclerCarrinho);
         recyclerCarrinho.setLayoutManager(new LinearLayoutManager(this));
-        CarrinhoAdapter adapter = new CarrinhoAdapter(listCart);
+        CarrinhoAdapter adapter = new CarrinhoAdapter(listCart, new CarrinhoAdapter.OnItemRemoveListener() {
+            @Override
+            public void onItemRemoved() {
+                calculateAllProduct(); 
+            }
+        });
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         //setSelectedItem(R.id.nav_carrinho);
