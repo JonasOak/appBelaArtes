@@ -38,7 +38,8 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
     private TextView tvNome, tvDescricao, tvCategoria, tvPreco, tvEstoque;
     private Produto produtoCart;
     private ImageButton addCart;
-    private Button close;
+    private ImageButton close;
+
     private Context context;
 
 
@@ -71,7 +72,7 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
         tvEstoque = findViewById(R.id.tvEstoque);
         addCart = findViewById(R.id.btnAddCarrinho);
         this.produtoCart = new Produto();
-        this.close = findViewById(R.id.btn_product_datalhe_close);
+        close = findViewById(R.id.btn_product_datalhe_close);
     }
 
     private void setupListeners() {

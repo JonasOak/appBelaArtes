@@ -114,15 +114,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.button.MaterialButton
+        <ImageButton
             android:id="@+id/btn_product_datalhe_close"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/rosa_tracejado"
-            android:text="@string/fechar"
-            android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Fechar"
+            android:src="@drawable/rewind"
+            android:scaleType="centerInside"
+            android:layout_gravity="start" />
+
     </LinearLayout>
 
 </ScrollView>
