@@ -50,7 +50,7 @@ public class OrderRepository {
                         if (error.networkResponse != null) {
                             errorMsg += " (status: " + error.networkResponse.statusCode + ")";
                         }
-                        callback.onError(errorMsg);
+//                        callback.onError(errorMsg);
                     }
             );
 
