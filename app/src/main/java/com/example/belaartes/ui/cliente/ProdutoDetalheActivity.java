@@ -3,6 +3,7 @@ package com.example.belaartes.ui.cliente;
 import static com.example.belaartes.data.session.CheckoutSession.listCart;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
     private Produto produtoCart;
     private ImageButton addCart;
     private Button close;
+    private Context context;
 
 
     @SuppressLint("MissingInflatedId")
@@ -87,6 +89,7 @@ public class ProdutoDetalheActivity extends BaseClienteActivity {
                 ItemPedido requestCart = new ItemPedido(produtoCart, 1, produtoCart.getPreco());
                 System.out.println(requestCart);
                 listCart.add(requestCart);
+                Toast.makeText(ProdutoDetalheActivity.this, "Adicionado ao carrinho: " + produtoCart.getNome(), Toast.LENGTH_SHORT).show();
             }
         });
     }
