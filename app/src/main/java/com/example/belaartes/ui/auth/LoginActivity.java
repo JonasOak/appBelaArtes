@@ -22,6 +22,8 @@ import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
+import com.example.belaartes.ui.admin.AdminActivity;
+import com.example.belaartes.ui.admin.AdminProdutosActivity;
 import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 import com.example.belaartes.ui.cliente.RegisterClientActivity;
@@ -82,10 +84,19 @@ public class LoginActivity extends BaseClienteActivity {
                 public void onSuccess(Cliente client) {
                     saveSessionConfig(email, senha);
                     ClientSession.setClientSession(client);
-                    Intent intent = new Intent(LoginActivity.this, CarrinhoComprasActivity.class);
-                    startActivity(intent);
-                    finish();
-                    // Criar tela para perfil de usuario ou algo do tipo
+                    if(client.getUsuario().getCargo().equals("CLIENTE")){
+                        Intent intent = new Intent(LoginActivity.this, CarrinhoComprasActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else if(client.getUsuario().getCargo().equals("ADM")){
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        runOnUiThread(()->{
+                            Toast.makeText(LoginActivity.this, "Erro desconhecido", Toast.LENGTH_SHORT).show();
+                        });
+                    }
                 }
 
                 @Override
