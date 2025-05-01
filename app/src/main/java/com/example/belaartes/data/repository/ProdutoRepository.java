@@ -124,14 +124,15 @@ public class ProdutoRepository {
     }
 
     public static void atualizarProduto(Context context, Produto produto, final ProdutoCallback callback) {
-        String url = BASE_URL + "/" + produto.getIdProduto();
+        String url = BASE_URL + "/update";
         JSONObject jsonBody = new JSONObject();
         try {
+            jsonBody.put("idProduto", produto.getIdProduto());
             jsonBody.put("nome", produto.getNome());
             jsonBody.put("descricao", produto.getDescricao());
             jsonBody.put("categoria", produto.getCategoria());
             jsonBody.put("preco", produto.getPreco().toString());
-            jsonBody.put("imagemBase64", produto.getImagem());
+            jsonBody.put("imagem", produto.getImagem());
             jsonBody.put("estoque", produto.getEstoque());
         } catch (JSONException e) {
             e.printStackTrace();
