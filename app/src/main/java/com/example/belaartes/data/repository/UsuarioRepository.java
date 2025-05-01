@@ -64,6 +64,15 @@ public class UsuarioRepository {
                                 response.getString("cep"),
                                 response.getString("complemento")
                         );
+                        JSONObject usuarioJson = response.getJSONObject("usuario");
+
+                        Usuario dateUser = new Usuario(
+                                usuarioJson.getInt("idUsuario"),
+                                usuarioJson.getString("email"),
+                                usuarioJson.getString("senhaHash"),
+                                usuarioJson.getString("cargo")
+                        );
+                        client.setUsuario(dateUser);
                         callback.onSuccess(client);
                     } catch (JSONException e) {
                         callback.onError("Erro ao interpretar resposta do servidor");
