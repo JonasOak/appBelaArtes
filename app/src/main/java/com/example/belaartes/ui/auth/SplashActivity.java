@@ -6,12 +6,8 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belaartes.R;
-import com.example.belaartes.ui.admin.AdminProdutosActivity;
-import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
-import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 import com.example.belaartes.ui.cliente.HomeClienteActivity;
-import com.example.belaartes.ui.cliente.ProdutoDetalheActivity;
-import com.example.belaartes.ui.cliente.RegisterClientActivity;
+
 
 public class SplashActivity extends AppCompatActivity{
 

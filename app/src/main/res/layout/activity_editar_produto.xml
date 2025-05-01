@@ -1,114 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pink"
-    android:padding="16dp"
     tools:context=".ui.admin.EditarProdutoActivity">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <!-- Scroll com conteúdo -->
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/pink"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Produtos"
-        app:titleTextColor="@color/white" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Título -->
-    <TextView
-        android:id="@+id/txtTitulo"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/txtTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text="Editar Produto"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Nome -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome do produto"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Descrição -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Descrição"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Preço -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtPreco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Preço"
+                    android:inputType="numberDecimal"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Quantidade -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtQuantidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Quantidade"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botão Alterar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSalvar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alterar"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/rosa_tracejado"
+                app:cornerRadius="20dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botão voltar fixo -->
+    <ImageButton
+        android:id="@+id/btn_voltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Editar Produto"
-        android:textColor="@color/fundo_claro2"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-    <!-- Nome do Produto -->
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edtNome"
-        android:layout_width="360dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/caixa_de_texto"
-        android:hint="Nome do produto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitulo" />
-
-
-    <EditText
-        android:id="@+id/edtDescricao"
-        android:layout_width="355dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/caixa_de_texto"
-        android:hint="Descrição"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtNome" />
-
-    <EditText
-        android:id="@+id/edtPreco"
-        android:layout_width="351dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/caixa_de_texto"
-        android:hint="Preço"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.357"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtDescricao" />
-
-    <EditText
-        android:id="@+id/edtQuantidade"
-        android:layout_width="349dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/caixa_de_texto"
-        android:hint="Quantidade"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPreco" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSalvar"
-        android:layout_width="362dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/rosa_tracejado"
-        android:text="Alterar"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtQuantidade" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="109dp"
-        android:layout_height="95dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#2B2D30"
-        android:src="@drawable/logo"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Voltar"
+        android:src="@drawable/rewind"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
