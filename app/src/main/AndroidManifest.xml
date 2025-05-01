@@ -76,8 +76,13 @@
             android:name=".ui.cliente.RecoverActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.admin.AdminActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.auth.SplashActivity"
             android:exported="true">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
