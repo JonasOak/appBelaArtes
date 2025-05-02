@@ -56,7 +56,7 @@
         android:backgroundTint="@color/rosa_tracejado"
         android:contentDescription="Adicionar usuário"
         android:src="@drawable/user_plus"
-        app:elevation="8dp"/>
+        app:elevation="8dp" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
