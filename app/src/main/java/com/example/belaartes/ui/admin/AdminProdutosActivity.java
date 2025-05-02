@@ -71,11 +71,9 @@ public class AdminProdutosActivity extends AppCompatActivity implements ProdutoA
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Atualiza em tempo real (ex: filtrar lista)
                 return false;
             }
         });
-
         return true;
     }
 

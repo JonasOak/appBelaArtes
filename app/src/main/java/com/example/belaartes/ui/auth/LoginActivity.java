@@ -22,6 +22,7 @@ import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
+import com.example.belaartes.ui.admin.AdminProdutosActivity;
 import com.example.belaartes.ui.admin.ListaUsuariosActivity;
 import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.HomeClienteActivity;
