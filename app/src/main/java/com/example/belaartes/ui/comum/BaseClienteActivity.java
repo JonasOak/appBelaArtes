@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,26 +18,35 @@ import com.example.belaartes.ui.auth.LoginActivity;
 import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
 import com.example.belaartes.ui.cliente.HomeClienteActivity;
+import com.example.belaartes.ui.cliente.ProdutoDetalheActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public abstract class BaseClienteActivity extends AppCompatActivity {
     protected BottomNavigationView bottomNavigationView;
     private EditText edtBuscar;
-    private ImageView imgSearch;
+
     protected abstract int getSelectedBottomNavigationItemId();
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (this instanceof CarrinhoComprasActivity || this instanceof LoginActivity) {
-            edtBuscar.setVisibility(View.GONE);
-            imgSearch.setVisibility(View.GONE);
+        View layoutBusca = findViewById(R.id.layoutBusca);
+        TextView txtEmpresa = findViewById(R.id.txtEmpresa);
+
+        if (this instanceof CarrinhoComprasActivity ||
+                this instanceof LoginActivity ||
+                this instanceof HomeClienteActivity ||
+                this instanceof ProdutoDetalheActivity) {
+
+            layoutBusca.setVisibility(View.GONE);
+            txtEmpresa.setVisibility(View.VISIBLE);
         } else {
-            edtBuscar.setVisibility(View.VISIBLE);
-            imgSearch.setVisibility(View.VISIBLE);
+            layoutBusca.setVisibility(View.VISIBLE);
+            txtEmpresa.setVisibility(View.GONE);
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +55,6 @@ public abstract class BaseClienteActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         edtBuscar = findViewById(R.id.edtBuscar);
-        imgSearch = findViewById(R.id.icBuscar);
 
         int selectedItemId = getSelectedBottomNavigationItemId();
         if (selectedItemId != 0) {
