@@ -19,8 +19,9 @@
             android:name="android.supportsDarkTheme"
             android:value="false" />
 
-        <activity android:name=".ui.cliente.HomeClienteActivity"
-                  android:exported="false"/>
+        <activity
+            android:name=".ui.cliente.HomeClienteActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.comum.BaseClienteActivity"
             android:exported="false" />
@@ -77,7 +78,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.admin.AdminActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.ActivityUserConfig"
+            android:exported="false" />
         <activity
             android:name=".ui.auth.SplashActivity"
             android:exported="true">
