@@ -11,7 +11,8 @@ import com.example.belaartes.R;
 import com.example.belaartes.adapters.ProdutoCarouselAdapter;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
-import com.example.belaartes.ui.comum.BaseClienteActivity;;import java.util.List;
+import com.example.belaartes.ui.comum.BaseClienteActivity;
+import java.util.List;
 
 public class HomeClienteActivity extends BaseClienteActivity {
 
