@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("API", "Erro ao decodificar a imagem", e);
                         }
                     } else {
-                        imageProduto.setImageResource(R.drawable.logo);
+                        imageProduto.setImageResource(R.mipmap.bellas_artes_icon);
                     }
                 }
                 textProdutos.setText(resultado.toString());
