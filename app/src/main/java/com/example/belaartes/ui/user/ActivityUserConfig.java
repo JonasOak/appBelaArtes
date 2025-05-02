@@ -28,12 +28,8 @@ public class ActivityUserConfig extends AppExtends {
     }
 
     private void setupListeners(){
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+        btnLogout.setOnClickListener(v ->{logout();});
+        btnDelete.setOnClickListener(v -> {deleteAccount();});
     }
 
 }

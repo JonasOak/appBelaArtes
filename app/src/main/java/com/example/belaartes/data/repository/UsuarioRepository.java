@@ -167,30 +167,22 @@ public class UsuarioRepository {
         if (client.getIdCliente() == 0) {
             return;
         } else {
-            JSONObject jsonObject = new JSONObject();
-            try {
-                jsonObject.put("idClient:", client.getIdCliente());
-                JsonObjectRequest request = new JsonObjectRequest(
-                        Request.Method.DELETE,
-                        url,
-                        jsonObject,
-                        response -> {
-
-                        },
-                        error -> {
-                            String errorMsg = "Erro ao excluir conta!";
-                            if (error.networkResponse != null) {
-                                errorMsg += " (status: " + error.networkResponse.statusCode + ")";
-                            }
-                            callback.onError(errorMsg);
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.DELETE,
+                    url,
+                    null,
+                    response -> {
+                        callback.onSuccess("Conta deletada com sucesso!");
+                    },
+                    error -> {
+                        String errorMsg = "Erro ao excluir conta!";
+                        if (error.networkResponse != null) {
+                            errorMsg += " (status: " + error.networkResponse.statusCode + ")";
                         }
-                );
-                VolleySingleton.getInstance(context).addToRequestQueue(request);
-            } catch (JSONException e) {
-                callback.onError(e.getMessage());
-            }
+                        callback.onError(errorMsg);
+                    }
+            );
+            VolleySingleton.getInstance(context).addToRequestQueue(request);
         }
-
-
     }
 }
