@@ -23,17 +23,12 @@ public class AppExtends extends AppCompatActivity implements ClientUtil {
 
     @Override
     public void disableAccount() {
-
-    }
-
-    @Override
-    public void deleteAccount() {
         AlertDialog.Builder builder = new AlertDialog.Builder(AppExtends.this);
-        builder.setTitle("Deseja mesmo apagar sua conta?")
-                .setMessage("Ao apagar sua conta, o acesso a ela será permanentemente perdido.")
+        builder.setTitle("Deseja mesmo desativar sua conta?")
+                .setMessage("Ao desativar sua conta, o acesso a ela será desativado.")
                 .setPositiveButton("Confirmar", (dialog, which) -> {
-                    if(clientSession != null){
-                        UsuarioRepository.deleteAccount(this, clientSession, new UsuarioRepository.DeleteCallback() {
+                    if (clientSession != null) {
+                        UsuarioRepository.disableAccount(this, clientSession.getIdCliente(), new UsuarioRepository.DisableCallback() {
                             @Override
                             public void onSuccess(String response) {
                                 runOnUiThread(()->{
@@ -45,6 +40,36 @@ public class AppExtends extends AppCompatActivity implements ClientUtil {
                             @Override
                             public void onError(String error) {
                                 runOnUiThread(()->{
+                                    Toast.makeText(AppExtends.this, error, Toast.LENGTH_SHORT).show();
+                                });
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss())
+                .show();
+
+    }
+
+    @Override
+    public void deleteAccount() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AppExtends.this);
+        builder.setTitle("Deseja mesmo apagar sua conta?")
+                .setMessage("Ao apagar sua conta, o acesso a ela será permanentemente perdido.")
+                .setPositiveButton("Confirmar", (dialog, which) -> {
+                    if (clientSession != null) {
+                        UsuarioRepository.deleteAccount(this, clientSession, new UsuarioRepository.DeleteCallback() {
+                            @Override
+                            public void onSuccess(String response) {
+                                runOnUiThread(() -> {
+                                    logout();
+                                    Toast.makeText(AppExtends.this, response, Toast.LENGTH_SHORT).show();
+                                });
+                            }
+
+                            @Override
+                            public void onError(String error) {
+                                runOnUiThread(() -> {
                                     Toast.makeText(AppExtends.this, error, Toast.LENGTH_SHORT).show();
                                 });
                             }

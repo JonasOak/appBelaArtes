@@ -8,11 +8,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.belaartes.data.api.VolleySingleton;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
-import com.example.belaartes.data.session.ClientSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,24 +24,33 @@ public class UsuarioRepository {
 
     public interface UsuarioCallback {
         void onSuccess(List<Usuario> usuarios);
+
         void onError(String errorMessage);
     }
 
     public interface LoginCallback {
         void onSuccess(Usuario usuario);
+
         void onError(String errorMessage);
     }
 
     public interface ClientLoginCallback {
         void onSuccess(Cliente client);
+
         void onError(String errorMessage);
     }
+
     public interface DeleteCallback {
         void onSuccess(String response);
 
         void onError(String error);
     }
-    public static void Authenticar(Context context, String email, String senha, ClientLoginCallback callback) {
+    public interface DisableCallback {
+        void onSuccess(String response);
+
+        void onError(String error);
+    }
+    public static void Authenticate(Context context, String email, String senha, ClientLoginCallback callback) {
         String url = BASE_URL + "/login";
 
         JSONObject loginData = new JSONObject();
@@ -84,10 +93,17 @@ public class UsuarioRepository {
                 },
                 error -> {
                     if (error.networkResponse != null && error.networkResponse.statusCode == 401) {
-                        callback.onError("Email ou senha inválidos");
+                        String errorMessage;
+                        try {
+                            errorMessage = new String(error.networkResponse.data, "UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            errorMessage = "Erro de autenticação";
+                        }
+                        callback.onError(errorMessage);
                     } else {
                         callback.onError("Erro ao conectar com o servidor");
                     }
+
                 }
         );
 
@@ -176,6 +192,33 @@ public class UsuarioRepository {
                     },
                     error -> {
                         String errorMsg = "Erro ao excluir conta!";
+                        if (error.networkResponse != null) {
+                            errorMsg += " (status: " + error.networkResponse.statusCode + ")";
+                        }
+                        callback.onError(errorMsg);
+                    }
+            );
+            VolleySingleton.getInstance(context).addToRequestQueue(request);
+        }
+    }
+
+    /**
+     * Metado para desativar conta
+     */
+    public static void disableAccount(Context context, Integer clientId, DisableCallback callback) {
+        String url = BASE_URL + "/disable/" + clientId;
+        if (clientId == 0) {
+            return;
+        } else {
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    null,
+                    response -> {
+                        callback.onSuccess("Conta desativada com sucesso!");
+                    },
+                    error -> {
+                        String errorMsg = "Erro ao desativar conta!";
                         if (error.networkResponse != null) {
                             errorMsg += " (status: " + error.networkResponse.statusCode + ")";
                         }

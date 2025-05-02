@@ -5,10 +5,8 @@ import static com.example.belaartes.data.session.ClientSession.clientSession;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -23,8 +21,6 @@ import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
 import com.example.belaartes.ui.admin.AdminProdutosActivity;
-import com.example.belaartes.ui.admin.ListaUsuariosActivity;
-import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
 import com.example.belaartes.ui.cliente.HomeClienteActivity;
 import com.example.belaartes.ui.cliente.RegisterClientActivity;
 import com.example.belaartes.ui.comum.BaseClienteActivity;
@@ -82,7 +78,7 @@ public class LoginActivity extends BaseClienteActivity {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 return;
             }
-            UsuarioRepository.Authenticar(this, email, senha, new UsuarioRepository.ClientLoginCallback() {
+            UsuarioRepository.Authenticate(this, email, senha, new UsuarioRepository.ClientLoginCallback() {
                 @Override
                 public void onSuccess(Cliente client) {
                     saveSessionConfig(email, senha);

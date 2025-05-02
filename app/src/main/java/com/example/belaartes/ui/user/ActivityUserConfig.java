@@ -29,6 +29,7 @@ public class ActivityUserConfig extends AppExtends {
 
     private void setupListeners(){
         btnLogout.setOnClickListener(v ->{logout();});
+        btnDisableAccount.setOnClickListener(v->{disableAccount();});
         btnDelete.setOnClickListener(v -> {deleteAccount();});
     }
 
