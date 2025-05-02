@@ -1,5 +1,7 @@
 package com.example.belaartes.ui.auth;
 
+import static com.example.belaartes.data.session.ClientSession.clientSession;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,22 +14,20 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Cliente;
-import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
-import com.example.belaartes.ui.admin.AdminActivity;
-import com.example.belaartes.ui.admin.AdminProdutosActivity;
+import com.example.belaartes.ui.admin.ListaUsuariosActivity;
 import com.example.belaartes.ui.cliente.CarrinhoComprasActivity;
-import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
+import com.example.belaartes.ui.cliente.HomeClienteActivity;
 import com.example.belaartes.ui.cliente.RegisterClientActivity;
 import com.example.belaartes.ui.comum.BaseClienteActivity;
+import com.example.belaartes.ui.user.ActivityUserConfig;
 
 public class LoginActivity extends BaseClienteActivity {
 
@@ -48,6 +48,7 @@ public class LoginActivity extends BaseClienteActivity {
             return insets;
         });
 
+
         editEmail = findViewById(R.id.editEmail);
         editSenha = findViewById(R.id.editSenha);
         btnLogin = findViewById(R.id.btnLogin);
@@ -55,7 +56,7 @@ public class LoginActivity extends BaseClienteActivity {
 
         configurarEventos();
         redirecionaTelaCadastro();
-
+        checkLoggedIn();
 
         preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         if (preferences.getBoolean("lembrar", false)) {
@@ -65,6 +66,7 @@ public class LoginActivity extends BaseClienteActivity {
         }
 
     }
+
 
     @Override
     protected int getSelectedBottomNavigationItemId() {
@@ -84,16 +86,16 @@ public class LoginActivity extends BaseClienteActivity {
                 public void onSuccess(Cliente client) {
                     saveSessionConfig(email, senha);
                     ClientSession.setClientSession(client);
-                    if(client.getUsuario().getCargo().equals("CLIENTE")){
-                        Intent intent = new Intent(LoginActivity.this, CarrinhoComprasActivity.class);
+                    if (client.getUsuario().getCargo().equals("CLIENTE")) {
+                        Intent intent = new Intent(LoginActivity.this, HomeClienteActivity.class);
                         startActivity(intent);
                         finish();
-                    } else if(client.getUsuario().getCargo().equals("ADM")){
-                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    } else if (client.getUsuario().getCargo().equals("ADM")) {
+                        Intent intent = new Intent(LoginActivity.this, ListaUsuariosActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        runOnUiThread(()->{
+                        runOnUiThread(() -> {
                             Toast.makeText(LoginActivity.this, "Erro desconhecido", Toast.LENGTH_SHORT).show();
                         });
                     }
@@ -101,7 +103,7 @@ public class LoginActivity extends BaseClienteActivity {
 
                 @Override
                 public void onError(String errorMessage) {
-                    runOnUiThread(()->{
+                    runOnUiThread(() -> {
                         Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                     });
 
@@ -129,10 +131,11 @@ public class LoginActivity extends BaseClienteActivity {
 
     /**
      * Lembrar senha
+     *
      * @param email
      * @param senha
      */
-    private void saveSessionConfig(String email, String senha){
+    private void saveSessionConfig(String email, String senha) {
         if (saveSession.isChecked()) {
             // Salva email e senha
             SharedPreferences.Editor editor = preferences.edit();
@@ -145,6 +148,18 @@ public class LoginActivity extends BaseClienteActivity {
             preferences.edit().clear().apply();
         }
     }
+
+    /**
+     * Se o usuário estiver logado troca de tela
+     */
+    protected void checkLoggedIn() {
+        if (clientSession != null) {
+            Intent screenUserConfig = new Intent(LoginActivity.this, ActivityUserConfig.class);
+            startActivity(screenUserConfig);
+            finish();
+        }
+    }
+
     public void redirecionaTelaCadastro() {
         Button btnCadastrar = findViewById(R.id.btnCadastrar);
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
