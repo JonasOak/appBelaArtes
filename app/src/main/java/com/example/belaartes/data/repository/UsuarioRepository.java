@@ -36,7 +36,11 @@ public class UsuarioRepository {
         void onSuccess(Cliente client);
         void onError(String errorMessage);
     }
+    public interface DeleteCallback {
+        void onSuccess(String response);
 
+        void onError(String error);
+    }
     public static void Authenticar(Context context, String email, String senha, ClientLoginCallback callback) {
         String url = BASE_URL + "/login";
 
@@ -152,5 +156,41 @@ public class UsuarioRepository {
                 error -> callback.onError(error.toString())
         );
         VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+
+    /**
+     * Metado para apagar conta
+     */
+    public static void deleteAccount(Context context, Cliente client, DeleteCallback callback) {
+        String url = BASE_URL + "/" + client.getIdCliente();
+        if (client.getIdCliente() == 0) {
+            return;
+        } else {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("idClient:", client.getIdCliente());
+                JsonObjectRequest request = new JsonObjectRequest(
+                        Request.Method.DELETE,
+                        url,
+                        jsonObject,
+                        response -> {
+
+                        },
+                        error -> {
+                            String errorMsg = "Erro ao excluir conta!";
+                            if (error.networkResponse != null) {
+                                errorMsg += " (status: " + error.networkResponse.statusCode + ")";
+                            }
+                            callback.onError(errorMsg);
+                        }
+                );
+                VolleySingleton.getInstance(context).addToRequestQueue(request);
+            } catch (JSONException e) {
+                callback.onError(e.getMessage());
+            }
+        }
+
+
     }
 }
