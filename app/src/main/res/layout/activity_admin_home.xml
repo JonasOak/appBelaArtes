@@ -68,7 +68,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/file_lock"
+                        android:src="@drawable/notepad"
                         android:tint="@color/rosa_tracejado"
                         android:layout_marginEnd="16dp" />
 
