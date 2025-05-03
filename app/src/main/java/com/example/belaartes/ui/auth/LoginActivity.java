@@ -88,7 +88,7 @@ public class LoginActivity extends BaseClienteActivity {
                         startActivity(intent);
                         finish();
                     } else if(client.getUsuario().getCargo().equals("ADM")){
-                        Intent intent = new Intent(LoginActivity.this, AdminProdutosActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
