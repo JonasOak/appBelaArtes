@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/pink">
 
+    <!-- AppBar com Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,18 +19,39 @@
             android:background="@color/pink"
             app:title="Produtos"
             app:titleTextColor="@color/white"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProdutosAdmin"
+    <!-- Lista e rodapé -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@color/pink"/>
+        android:orientation="vertical">
 
+        <!-- RecyclerView com layout_behavior -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProdutosAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/pink"
+            android:padding="8dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <!-- Footer fixo -->
+        <TextView
+            android:id="@+id/footer_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/rosa_tracejado"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="@string/footerTexto"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Botão flutuante -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddProduto"
         android:layout_width="wrap_content"
@@ -40,5 +62,4 @@
         android:src="@drawable/plus_circle"
         android:backgroundTint="@color/rosa_tracejado"
         app:elevation="8dp"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
