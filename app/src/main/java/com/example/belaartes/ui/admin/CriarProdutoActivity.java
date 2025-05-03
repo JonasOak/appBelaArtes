@@ -188,7 +188,6 @@ public class CriarProdutoActivity extends ProductExtends {
     }
 
     protected ProdutoDto saveProductDto(){
-        System.out.println("Byte "+imageBytes);
         return new ProdutoDto(
                 productName.getText().toString(),
                 productDescription.getText().toString(),
