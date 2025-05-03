@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Para Android 12 e inferior -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- Para Android 13 (API 33) ou superior -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
     <application
         android:allowBackup="true"
@@ -41,7 +46,10 @@
             android:name=".ui.admin.EditarProdutoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.admin.CadastroProdutoActivity"
+            android:name=".ui.admin.CriarProdutoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.admin.AtualizarProdutoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.admin.AdminProdutosActivity"
