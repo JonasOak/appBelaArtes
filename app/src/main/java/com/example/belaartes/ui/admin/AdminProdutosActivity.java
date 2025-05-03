@@ -56,24 +56,24 @@ public class AdminProdutosActivity extends AppCompatActivity implements ProdutoA
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+       // MenuItem searchItem = menu.findItem(R.id.action_search);
+       // SearchView searchView = (SearchView) searchItem.getActionView();
 
-        searchView.setQueryHint("Buscar produtos...");
+      //  searchView.setQueryHint("Buscar produtos...");
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // Ação ao apertar "buscar"
-                Toast.makeText(AdminProdutosActivity.this, "Buscando por: " + query, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                // Ação ao apertar "buscar"
+//                Toast.makeText(AdminProdutosActivity.this, "Buscando por: " + query, Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
         return true;
     }
 
