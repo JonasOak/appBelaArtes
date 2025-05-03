@@ -152,9 +152,15 @@ public class LoginActivity extends BaseClienteActivity {
      */
     protected void checkLoggedIn() {
         if (clientSession != null) {
-            Intent screenUserConfig = new Intent(LoginActivity.this, ActivityUserConfig.class);
-            startActivity(screenUserConfig);
-            finish();
+            if(clientSession.getUsuario().getCargo().equals("ADM")){
+                Intent screenAdmin = new Intent(LoginActivity.this, AdminActivity.class);
+                startActivity(screenAdmin);
+
+            } else {
+                Intent screenUserConfig = new Intent(LoginActivity.this, ActivityUserConfig.class);
+                startActivity(screenUserConfig);
+                finish();
+            }
         }
     }
 

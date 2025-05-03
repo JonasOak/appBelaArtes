@@ -42,13 +42,13 @@ public class ProdutoRepository {
 
 
     public static void criarProduto(Context context, ProdutoDto produto, final CriaProdutoCallback callback) {
-        System.out.println("DADOS DO PRODUTO " +produto.getImagem());
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("nome", produto.getNome());
             jsonBody.put("descricao", produto.getDescricao());
             jsonBody.put("categoria", produto.getCategoria());
             jsonBody.put("preco", produto.getPreco().toString());
+            jsonBody.put("imagem", produto.getImagem().toString());
             jsonBody.put("estoque", produto.getEstoque());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class ProdutoRepository {
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                BASE_URL+"/criar/"+produto.getImagem(),
+                BASE_URL+"/criar",
                 jsonBody,
                 response -> {
                     callback.onSuccess("Produto criado com sucesso");
