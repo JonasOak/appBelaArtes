@@ -20,6 +20,7 @@ import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.session.ClientSession;
+import com.example.belaartes.ui.admin.AdminActivity;
 import com.example.belaartes.ui.admin.AdminProdutosActivity;
 import com.example.belaartes.ui.cliente.HomeClienteActivity;
 import com.example.belaartes.ui.cliente.RegisterClientActivity;
@@ -151,9 +152,15 @@ public class LoginActivity extends BaseClienteActivity {
      */
     protected void checkLoggedIn() {
         if (clientSession != null) {
-            Intent screenUserConfig = new Intent(LoginActivity.this, ActivityUserConfig.class);
-            startActivity(screenUserConfig);
-            finish();
+            if(clientSession.getUsuario().getCargo().equals("ADM")){
+                Intent screenAdmin = new Intent(LoginActivity.this, AdminActivity.class);
+                startActivity(screenAdmin);
+
+            } else {
+                Intent screenUserConfig = new Intent(LoginActivity.this, ActivityUserConfig.class);
+                startActivity(screenUserConfig);
+                finish();
+            }
         }
     }
 
