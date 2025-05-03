@@ -1,7 +1,6 @@
 package com.example.belaartes.ui.admin;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belaartes.R;
-import com.example.belaartes.data.model.entities.AdminDto;
+import com.example.belaartes.data.model.dto.AdminDto;
 import com.example.belaartes.data.repository.AdminRepository;
 
 public class AdminActivity extends AppCompatActivity {

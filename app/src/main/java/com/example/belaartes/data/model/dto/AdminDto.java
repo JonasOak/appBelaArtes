@@ -1,4 +1,4 @@
-package com.example.belaartes.data.model.entities;
+package com.example.belaartes.data.model.dto;
 
 public class AdminDto {
     private long countClient;

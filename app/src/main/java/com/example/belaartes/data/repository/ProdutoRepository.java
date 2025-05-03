@@ -7,6 +7,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.belaartes.data.api.VolleySingleton;
+import com.example.belaartes.data.model.dto.ProdutoDto;
 import com.example.belaartes.data.model.entities.Produto;
 
 import org.json.JSONException;
@@ -30,21 +31,24 @@ public class ProdutoRepository {
         void onSuccess(Produto produto);
         void onError(String error);
     }
-
+    public interface CriaProdutoCallback {
+        void onSuccess(String response);
+        void onError(String mensagemErro);
+    }
     public interface ProdutoDeleteCallback {
         void onSuccess();
         void onError(String mensagemErro);
     }
 
 
-    public static void criarProduto(Context context, Produto produto, final ProdutoCallback callback) {
+    public static void criarProduto(Context context, ProdutoDto produto, final CriaProdutoCallback callback) {
+        System.out.println("DADOS DO PRODUTO " +produto.getImagem());
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("nome", produto.getNome());
             jsonBody.put("descricao", produto.getDescricao());
             jsonBody.put("categoria", produto.getCategoria());
             jsonBody.put("preco", produto.getPreco().toString());
-            jsonBody.put("imagemBase64", produto.getImagem());
             jsonBody.put("estoque", produto.getEstoque());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -54,9 +58,11 @@ public class ProdutoRepository {
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                BASE_URL,
+                BASE_URL+"/criar/"+produto.getImagem(),
                 jsonBody,
-                response -> getAllProdutos(context, callback), // atualiza após cadastrar
+                response -> {
+                    callback.onSuccess("Produto criado com sucesso");
+                },
                 error -> callback.onError("Erro ao criar produto: " + error.toString())
         );
         VolleySingleton.getInstance(context).addToRequestQueue(request);

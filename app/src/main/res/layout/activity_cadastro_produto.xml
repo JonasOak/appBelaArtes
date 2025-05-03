@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pink"
-    tools:context=".ui.admin.CadastroProdutoActivity">
+    tools:context=".ui.admin.AtualizarProdutoActivity">
 
     <!-- Conteúdo com rolagem -->
     <ScrollView
@@ -38,6 +38,15 @@
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/cadastro_produto_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_add_photo"
+                android:background="@drawable/bg_image_border"
+                android:contentDescription="Selecionar imagem"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

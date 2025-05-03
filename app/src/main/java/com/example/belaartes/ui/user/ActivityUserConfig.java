@@ -1,13 +1,12 @@
 package com.example.belaartes.ui.user;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
 import com.example.belaartes.R;
-import com.example.belaartes.ui.AppExtends;
+import com.example.belaartes.data.abstractClass.AppExtends;
 
 public class ActivityUserConfig extends AppExtends {
     private Button btnDelete, btnDisableAccount, btnLogout;

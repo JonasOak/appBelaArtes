@@ -1,4 +1,4 @@
-package com.example.belaartes.ui;
+package com.example.belaartes.data.abstractClass;
 
 import static com.example.belaartes.data.session.ClientSession.clientSession;
 

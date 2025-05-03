@@ -5,10 +5,9 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.belaartes.data.api.VolleySingleton;
-import com.example.belaartes.data.model.entities.AdminDto;
+import com.example.belaartes.data.model.dto.AdminDto;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class AdminRepository {
     private static final String BASE_URL = "http://186.247.89.58:8080/admin";

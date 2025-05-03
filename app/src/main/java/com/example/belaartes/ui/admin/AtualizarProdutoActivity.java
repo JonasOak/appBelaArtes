@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +22,13 @@ import com.example.belaartes.R;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class CadastroProdutoActivity extends AppCompatActivity {
+public class AtualizarProdutoActivity extends AppCompatActivity {
     private int idProduct;
     private String imgProductBase64;
     private ImageView btnMenu;
     private Button saveProduct;
     private EditText productName, productDescription, productPrice, productAmount;
-
+    private TextView screenTitle;
     private Produto productSelected;
 
     @Override
@@ -53,7 +54,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // Ação ao apertar "buscar"
-                Toast.makeText(CadastroProdutoActivity.this, "Buscando por: " + query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AtualizarProdutoActivity.this, "Buscando por: " + query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -78,6 +79,8 @@ public class CadastroProdutoActivity extends AppCompatActivity {
     }
 
     private void initializeUI(){
+        this.screenTitle = findViewById(R.id.txtTitulo);
+        screenTitle.setText("Atualizar produto");
         this.productName = findViewById(R.id.edtNome);
         this.productDescription = findViewById(R.id.edtDescricao);
         this.productPrice = findViewById(R.id.edtPreco);
@@ -108,18 +111,18 @@ public class CadastroProdutoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Produto saveProduct = new Produto(productSelected.getIdProduto(), productName.getText().toString(), productDescription.getText().toString(), productSelected.getCategoria(), new BigDecimal(productPrice.getText().toString()), productSelected.getImagem(), Integer.valueOf(productAmount.getText().toString()));
 
-                ProdutoRepository.atualizarProduto(CadastroProdutoActivity.this, saveProduct, new ProdutoRepository.ProdutoCallback() {
+                ProdutoRepository.atualizarProduto(AtualizarProdutoActivity.this, saveProduct, new ProdutoRepository.ProdutoCallback() {
                     @Override
                     public void onSuccess(List<Produto> produtos) {
                         runOnUiThread(()->{
-                            Toast.makeText(CadastroProdutoActivity.this, "Produto atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AtualizarProdutoActivity.this, "Produto atualizado com sucesso!", Toast.LENGTH_SHORT).show();
                         });
                     }
 
                     @Override
                     public void onError(String mensagemErro) {
                         runOnUiThread(()->{
-                            Toast.makeText(CadastroProdutoActivity.this, "Erro ao atualizar produto!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AtualizarProdutoActivity.this, "Erro ao atualizar produto!", Toast.LENGTH_SHORT).show();
                         });
                     }
                 });

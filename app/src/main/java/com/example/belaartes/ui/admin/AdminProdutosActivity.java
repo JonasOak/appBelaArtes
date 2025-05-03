@@ -45,7 +45,7 @@ public class AdminProdutosActivity extends AppCompatActivity implements ProdutoA
         // Botão flutuante para adicionar produto
         fabAddProduto = findViewById(R.id.fabAddProduto);
         fabAddProduto.setOnClickListener(v -> {
-            startActivity(new Intent(this, CadastroProdutoActivity.class));
+            startActivity(new Intent(this, CriarProdutoActivity.class));
         });
 
         // Carrega os produtos
@@ -115,7 +115,7 @@ public class AdminProdutosActivity extends AppCompatActivity implements ProdutoA
     }
 
     private void abrirEdicao(Produto produto) {
-        Intent intent = new Intent(this, CadastroProdutoActivity.class);
+        Intent intent = new Intent(this, AtualizarProdutoActivity.class);
         intent.putExtra("produto", produto);
         startActivity(intent);
     }
