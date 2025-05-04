@@ -3,6 +3,7 @@ package com.example.belaartes.data.model.dto;
 import java.math.BigDecimal;
 
 public class ProdutoDto {
+    private int IdProduto;
     private String nome;
     private String descricao;
     private String categoria;
@@ -17,6 +18,14 @@ public class ProdutoDto {
         this.preco = preco;
         this.imagem = imagem;
         this.estoque = estoque;
+    }
+
+    public int getIdProduto() {
+        return IdProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        IdProduto = idProduto;
     }
 
     public String getNome() {

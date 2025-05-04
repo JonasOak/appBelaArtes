@@ -129,11 +129,11 @@ public class ProdutoRepository {
         VolleySingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    public static void atualizarProduto(Context context, Produto produto, final ProdutoCallback callback) {
+    public static void atualizarProduto(Context context, ProdutoDto produto,int idProduct, final ProdutoCallback callback) {
         String url = BASE_URL + "/update";
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("idProduto", produto.getIdProduto());
+            jsonBody.put("idProduto", idProduct);
             jsonBody.put("nome", produto.getNome());
             jsonBody.put("descricao", produto.getDescricao());
             jsonBody.put("categoria", produto.getCategoria());

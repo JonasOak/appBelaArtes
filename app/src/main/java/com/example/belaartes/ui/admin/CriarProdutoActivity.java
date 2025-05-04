@@ -38,7 +38,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class CriarProdutoActivity extends ProductExtends {
-    private static final int REQUEST_IMAGE_PICK = 100;
 
     private byte[] imageBytes;
     private int idProduct;
@@ -50,7 +49,6 @@ public class CriarProdutoActivity extends ProductExtends {
     private Produto productSelected;
     private void verificarPermissaoGaleria() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
@@ -59,7 +57,6 @@ public class CriarProdutoActivity extends ProductExtends {
                 abrirGaleria();
             }
         } else {
-            // Android até 12
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
@@ -71,7 +68,7 @@ public class CriarProdutoActivity extends ProductExtends {
     }
     private void abrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, REQUEST_IMAGE_PICK);
+        startActivityForResult(intent, getREQUEST_IMAGE_PICK());
     }
 
     @Override
@@ -123,7 +120,7 @@ public class CriarProdutoActivity extends ProductExtends {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
+        if (requestCode == getREQUEST_IMAGE_PICK() && resultCode == RESULT_OK && data != null) {
             try {
                 Uri imageUri = data.getData();
                 if (imageUri == null) {
@@ -157,20 +154,18 @@ public class CriarProdutoActivity extends ProductExtends {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            abrirGaleria();
+//        } else {
+//            Toast.makeText(this, "Permissão negada para acessar imagens", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
 
-        if (requestCode == 100 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            abrirGaleria();
-        } else {
-            Toast.makeText(this, "Permissão negada para acessar imagens", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private String convertImageToBase64(byte[] imageBytes) {
-        return Base64.encodeToString(imageBytes, Base64.NO_WRAP);
-    }
 
     private void initializeUI(){
         this.screenTitle = findViewById(R.id.txtTitulo);
@@ -202,7 +197,7 @@ public class CriarProdutoActivity extends ProductExtends {
         imgProduto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
-            startActivityForResult(intent, REQUEST_IMAGE_PICK);
+            startActivityForResult(intent, getREQUEST_IMAGE_PICK());
         });
     }
 }

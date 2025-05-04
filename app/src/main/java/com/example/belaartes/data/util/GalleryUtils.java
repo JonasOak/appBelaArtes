@@ -1,50 +1,30 @@
-package com.example.belaartes.data.abstractClass;
-
-
-
+package com.example.belaartes.data.util;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.belaartes.data.model.dto.ProdutoDto;
-import com.example.belaartes.data.repository.ProdutoRepository;
-import com.example.belaartes.data.util.GalleryUtil;
-import com.example.belaartes.data.util.ProductUtil;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
+public class GalleryUtils extends AppCompatActivity implements GalleryUtil {
 
-public class ProductExtends extends AppExtends implements ProductUtil, GalleryUtil {
     private final int REQUEST_IMAGE_PICK = 100;
+    private byte[] imageBytes;
+    private Bitmap bitmap;
 
-    public int getREQUEST_IMAGE_PICK() {
-        return REQUEST_IMAGE_PICK;
-    }
 
-    @Override
-    public void createProduct(ProdutoDto product) {
-      ProdutoRepository.criarProduto(ProductExtends.this, product, new ProdutoRepository.CriaProdutoCallback() {
-          @Override
-          public void onSuccess(String response) {
-              runOnUiThread(() -> {
-                  Toast.makeText(ProductExtends.this, response, Toast.LENGTH_SHORT).show();
-              });
-          }
-
-          @Override
-          public void onError(String mensagemErro) {
-              runOnUiThread(() -> {
-                  Toast.makeText(ProductExtends.this, mensagemErro, Toast.LENGTH_SHORT).show();
-              });
-          }
-      });
-    }
 
     @Override
     public String convertImageToBase64(byte[] imageBytes) {
@@ -76,5 +56,22 @@ public class ProductExtends extends AppExtends implements ProductUtil, GalleryUt
                 openGallery();
             }
         }
+    }
+
+
+
+
+
+
+    public int getREQUEST_IMAGE_PICK() {
+        return REQUEST_IMAGE_PICK;
+    }
+
+    public byte[] getImageBytes() {
+        return imageBytes;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 }
