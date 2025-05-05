@@ -146,9 +146,27 @@ public class AtualizarProdutoActivity extends GalleryUtils {
         this.saveProduct = findViewById(R.id.btnSalvar);
         this.productSelected = new Produto();
         this.idProduct = 0;
-        this.imgProductBase64 = null;
+
+
 
     }
+    private void exibirImagemBase64(String base64, ImageView imageView) {
+        if (base64 != null && !base64.isEmpty()) {
+            try {
+                byte[] decodedBytes = Base64.decode(base64, Base64.NO_WRAP);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                imgProduto.setImageBitmap(decodedBitmap);
+            } catch (Exception e) {
+                Toast.makeText(this, "Erro ao exibir imagem: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public Bitmap decodeBase64ToBitmap(String base64Image) {
+        byte[] decodedBytes = Base64.decode(base64Image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
 
     private void fillInTheField() {
         Intent getProductSave = getIntent();
@@ -160,6 +178,13 @@ public class AtualizarProdutoActivity extends GalleryUtils {
             this.productPrice.setText(String.valueOf(productSelected.getPreco()));
             this.productAmount.setText(String.valueOf(productSelected.getEstoque()));
             this.imgProductBase64 = productSelected.getImagem();
+            if (productSelected.getImagem() != null && !productSelected.getImagem().isEmpty()) {
+                Bitmap imagemBitmap = decodeBase64ToBitmap(productSelected.getImagem());
+                imgProduto.setImageBitmap(imagemBitmap);
+                imageBytes = Base64.decode(imgProductBase64, Base64.DEFAULT);
+            } else {
+                Log.d("Produto", "Imagem está vazia ou nula");
+            }
         }
 
     }
