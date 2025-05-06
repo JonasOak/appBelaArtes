@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belaartes.R;
 import com.example.belaartes.adapters.UsuarioAdapter;
-import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -122,12 +121,13 @@ public class ListaUsuariosActivity extends AppCompatActivity {
     }
 
     private void abrirCadastroUsuario() {
-        startActivity(new Intent(this, CadastroUsuarioActivity.class));
+        startActivity(new Intent(this, UpdateUserActivity.class));
     }
 
     private void abrirEdicaoUsuario(Usuario usuario) {
-        Intent intent = new Intent(this, CadastroUsuarioActivity.class);
+        Intent intent = new Intent(this, UpdateUserActivity.class);
         intent.putExtra("usuario", usuario);
+        Log.d("Response", "Usuário: " +usuario);
         startActivity(intent);
     }
 

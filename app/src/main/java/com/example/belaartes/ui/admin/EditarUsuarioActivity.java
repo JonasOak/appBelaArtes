@@ -2,6 +2,7 @@ package com.example.belaartes.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -60,10 +61,13 @@ public class EditarUsuarioActivity extends AppCompatActivity {
         actvCargo.setAdapter(adapter);
 
         // Configurar botão salvar
-        btnSalvar.setOnClickListener(v -> salvarAlteracoes());
+        btnSalvar.setOnClickListener(v ->
+                salvarAlteracoes()
+        );
     }
 
     private void salvarAlteracoes() {
+        Log.d("Response", "Usuario: " + usuario);
         String email = etEmail.getText().toString().trim();
         String senha = etSenha.getText().toString().trim();
         String cargo = actvCargo.getText().toString().trim();

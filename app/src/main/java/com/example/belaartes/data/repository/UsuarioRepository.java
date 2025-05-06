@@ -27,6 +27,11 @@ public class UsuarioRepository {
 
         void onError(String errorMessage);
     }
+    public interface updateUserCallback {
+        void onSuccess(String message);
+
+        void onError(String errorMessage);
+    }
 
     public interface LoginCallback {
         void onSuccess(Usuario usuario);
@@ -90,6 +95,57 @@ public class UsuarioRepository {
                     } catch (JSONException e) {
                         callback.onError("Erro ao interpretar resposta do servidor");
                     }
+                },
+                error -> {
+                    if (error.networkResponse != null && error.networkResponse.statusCode == 401) {
+                        String errorMessage;
+                        try {
+                            errorMessage = new String(error.networkResponse.data, "UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            errorMessage = "Erro de autenticação";
+                        }
+                        callback.onError(errorMessage);
+                    } else {
+                        callback.onError("Erro ao conectar com o servidor");
+                    }
+
+                }
+        );
+
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+    public static void updateLogin(Context context, Usuario user, updateUserCallback callback) {
+        String url = BASE_URL;
+
+        JSONObject loginData = new JSONObject();
+        try {
+            loginData.put("idUsuario", user.getIdUsuario());
+            loginData.put("email", user.getEmail());
+            loginData.put("senhaHash", user.getSenhaHash());
+            loginData.put("cargo", user.getCargo());
+        } catch (JSONException e) {
+            callback.onError("Erro ao criar JSON de login");
+            return;
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, loginData,
+                response -> {
+//                    try {
+//
+//
+//                        JSONObject usuarioJson = response.getJSONObject("usuario");
+//
+//                        Usuario dateUser = new Usuario(
+//                                usuarioJson.getInt("idUsuario"),
+//                                usuarioJson.getString("email"),
+//                                usuarioJson.getString("senhaHash"),
+//                                usuarioJson.getString("cargo")
+//                        );
+//                        callback.onSuccess(client);
+//                    } catch (JSONException e) {
+//                        callback.onError("Erro ao interpretar resposta do servidor");
+//                    }
+                    callback.onSuccess("Atualizado com sucesso");
                 },
                 error -> {
                     if (error.networkResponse != null && error.networkResponse.statusCode == 401) {

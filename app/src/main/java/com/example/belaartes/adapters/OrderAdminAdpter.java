@@ -84,7 +84,6 @@ public class OrderAdminAdpter extends RecyclerView.Adapter<OrderAdminAdpter.Orde
             if(listener != null){
                 listener.onView(product);
             }
-            Toast.makeText(context, "Editando", Toast.LENGTH_LONG);
         });
     }
 

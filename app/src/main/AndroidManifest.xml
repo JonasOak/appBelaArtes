@@ -61,7 +61,7 @@
             android:name=".ui.admin.EditarUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.admin.CadastroUsuarioActivity"
+            android:name=".ui.admin.UpdateUserActivity"
             android:exported="false" />
         <activity
             android:name=".ui.comum.TelaInicialActivity"

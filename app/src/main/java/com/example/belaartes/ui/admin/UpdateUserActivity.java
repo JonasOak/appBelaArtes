@@ -11,8 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Usuario;
+import com.example.belaartes.data.repository.UsuarioRepository;
 
-public class CadastroUsuarioActivity extends AppCompatActivity {
+public class UpdateUserActivity extends AppCompatActivity {
 
     private EditText etEmail, etSenha;
     private Spinner spinnerCargo;
@@ -21,7 +22,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_usuario);
+        setContentView(R.layout.activity_update_user);
 
         // Inicializa views
         etEmail = findViewById(R.id.etEmail);
@@ -57,6 +58,25 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         }
     }
 
+
+    private void updateUser(Usuario user){
+        UsuarioRepository.updateLogin(UpdateUserActivity.this, user, new UsuarioRepository.updateUserCallback() {
+            @Override
+            public void onSuccess(String message) {
+                runOnUiThread(()->{
+                    Toast.makeText(UpdateUserActivity.this, message, Toast.LENGTH_SHORT).show();
+                });
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                runOnUiThread(()->{
+                    Toast.makeText(UpdateUserActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                });
+
+            }
+        });
+    }
     private void salvarUsuario() {
         String email = etEmail.getText().toString().trim();
         String senha = etSenha.getText().toString().trim();
@@ -74,6 +94,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             usuario.setSenhaHash(senha);
             usuario.setCargo(cargo);
         }
+        if(usuario != null){
+            updateUser(usuario);
+        }
+
 
         setResult(RESULT_OK);
         finish();

@@ -6,7 +6,8 @@
     <string name="excluir">Excluir</string>
 
     <string-array name="cargos_array">
-        <item>Cliente</item>
+        <item>CLIENTE</item>
+        <item>ADM</item>
     </string-array>
 
     <!--    tela de editar usuário-->
