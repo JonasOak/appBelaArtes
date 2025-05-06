@@ -88,6 +88,9 @@
             android:name=".ui.admin.AdminActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.admin.AdminOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.ActivityUserConfig"
             android:exported="false" />
         <activity

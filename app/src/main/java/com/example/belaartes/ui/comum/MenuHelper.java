@@ -1,22 +1,24 @@
 package com.example.belaartes.ui.comum;
 
+import static com.example.belaartes.data.session.ClientSession.clientSession;
+
 import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.belaartes.R;
+import com.example.belaartes.data.abstractClass.AppExtends;
 import com.example.belaartes.ui.admin.AdminActivity;
+import com.example.belaartes.ui.admin.AdminOrderActivity;
 import com.example.belaartes.ui.admin.AdminProdutosActivity;
-import com.example.belaartes.ui.cliente.CatalogoProdutosActivity;
+import com.example.belaartes.ui.auth.LoginActivity;
 
-public class MenuHelper {
+public class MenuHelper  {
+
     public static void mostrarMenu(Context context, View anchor) {
+
         PopupMenu popup = new PopupMenu(context, anchor);
         popup.getMenuInflater().inflate(R.menu.dropdown_menu, popup.getMenu());
 
@@ -39,11 +41,15 @@ public class MenuHelper {
                 Toast.makeText(context, "Clientes selecionado", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (id == R.id.menu_pedidos) {
-                Intent intent = new Intent(context, null);
-                context.startActivity(intent);
+                Intent screenOrder = new Intent(context, AdminOrderActivity.class);
+                context.startActivity(screenOrder);
+
                 Toast.makeText(context, "Pedidos selecionado", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (id == R.id.menu_sair) {
+                clientSession = null;
+                Intent screenLogin = new Intent(context, LoginActivity.class);
+                context.startActivity(screenLogin);
                 Toast.makeText(context, "Sair", Toast.LENGTH_SHORT).show();
             }
             return false;
