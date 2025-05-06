@@ -13,6 +13,7 @@ import com.example.belaartes.data.abstractClass.AppExtends;
 import com.example.belaartes.ui.admin.AdminActivity;
 import com.example.belaartes.ui.admin.AdminOrderActivity;
 import com.example.belaartes.ui.admin.AdminProdutosActivity;
+import com.example.belaartes.ui.admin.ListaUsuariosActivity;
 import com.example.belaartes.ui.auth.LoginActivity;
 
 public class MenuHelper  {
@@ -36,14 +37,13 @@ public class MenuHelper  {
                 Toast.makeText(context, "Produtos selecionado", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (id == R.id.menu_clientes) {
-                Intent intent = new Intent(context, null);
+                Intent intent = new Intent(context, ListaUsuariosActivity.class);
                 context.startActivity(intent);
                 Toast.makeText(context, "Clientes selecionado", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (id == R.id.menu_pedidos) {
                 Intent screenOrder = new Intent(context, AdminOrderActivity.class);
                 context.startActivity(screenOrder);
-
                 Toast.makeText(context, "Pedidos selecionado", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (id == R.id.menu_sair) {
