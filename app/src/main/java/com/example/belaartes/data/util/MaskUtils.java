@@ -3,6 +3,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class MaskUtils {
     public static TextWatcher insertPhoneMask(EditText editText) {
         return new TextWatcher() {
@@ -75,6 +78,39 @@ public class MaskUtils {
                 isUpdating = true;
                 editText.setText(formatted);
                 editText.setSelection(formatted.length());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        };
+    }
+
+    public static TextWatcher insertMoneyMask(EditText editText) {
+        return new TextWatcher() {
+            private boolean isUpdating = false;
+            private final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isUpdating) return;
+
+                isUpdating = true;
+
+                String cleanString = s.toString().replaceAll("[R$,.\\s]", "");
+
+                try {
+                    double parsed = Double.parseDouble(cleanString) / 100;
+                    String formatted = numberFormat.format(parsed);
+                    editText.setText(formatted);
+                    editText.setSelection(formatted.length());
+                } catch (NumberFormatException e) {
+                    editText.setText("");
+                }
+
+                isUpdating = false;
             }
 
             @Override

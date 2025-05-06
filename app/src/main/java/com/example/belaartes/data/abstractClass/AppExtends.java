@@ -10,9 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.belaartes.data.repository.UsuarioRepository;
 import com.example.belaartes.data.util.ClientUtil;
+import com.example.belaartes.data.util.DialogUtil;
 import com.example.belaartes.ui.auth.LoginActivity;
 
-public class AppExtends extends AppCompatActivity implements ClientUtil {
+public class AppExtends extends AppCompatActivity implements ClientUtil, DialogUtil {
     @Override
     public void logout() {
         clientSession = null;
@@ -81,4 +82,13 @@ public class AppExtends extends AppCompatActivity implements ClientUtil {
 
     }
 
+    @Override
+    public void showConfirmationDialog(String title, String message, Runnable onConfirm) {
+        new android.app.AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Sim", (dialog, which) -> onConfirm.run())
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
 }
