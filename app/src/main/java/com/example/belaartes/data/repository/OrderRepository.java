@@ -9,13 +9,17 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.belaartes.data.api.VolleySingleton;
+import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.ItemPedido;
+import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.session.ClientSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepository {
@@ -27,16 +31,86 @@ public class OrderRepository {
         void onError(String error);
     }
 
+    public interface OrdersProdutoCallback {
+        void onSuccess(List<Produto> produtos);
+
+        void onError(String mensagemErro);
+    }
+
+    public interface OrdersClientsCallBack {
+        void onSuccess(List<Cliente> client);
+
+        void onError(String mensagemErro);
+    }
+
+
+    public static void getAllProdutos(Context context, final OrdersProdutoCallback callback) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                BASE_URL,
+                null,
+                response -> {
+                    List<Produto> lista = new ArrayList<>();
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject obj = response.getJSONObject(i);
+                            Produto produto = new Produto();
+                            produto.setIdProduto(obj.getInt("idProduto"));
+                            produto.setNome(obj.getString("nome"));
+                            produto.setDescricao(obj.getString("descricao"));
+                            produto.setCategoria(obj.getString("categoria"));
+                            produto.setPreco(new BigDecimal(obj.getString("preco")));
+                            produto.setImagem(obj.getString("imagem"));
+                            //  produto.setEstoque(obj.getInt("estoque"));
+
+                            lista.add(produto);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            callback.onError("Erro ao converter produto");
+                        }
+                    }
+                    callback.onSuccess(lista);
+                },
+                error -> callback.onError("Erro na requisição: " + error.toString())
+        );
+
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    public static void getAllClientOrders(Context context, final OrdersClientsCallBack callback) {
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                BASE_URL + "/clients",
+                null,
+                response -> {
+                    List<Cliente> lista = new ArrayList<>();
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject obj = response.getJSONObject(i);
+                            Cliente client = new Cliente(obj.getInt("idCliente"), obj.getString("nome"), obj.getString("cpf"), obj.getString("cep"), obj.getString("logradouro"), obj.getString("numero"), obj.getString("bairro"), obj.getString("cep"), obj.getString("complemento"));
+                            lista.add(client);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            callback.onError("Erro ao converter cliente");
+                        }
+                    }
+                    callback.onSuccess(lista);
+                },
+                error -> callback.onError("Erro na requisição: " + error.toString())
+        );
+
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
 
     public static void registerOrder(Context context, RegisterOrderCallback callback) {
         try {
             JSONArray requestArray = new JSONArray();
-                for (ItemPedido orders : listCart) {
-                    JSONObject clientObject = new JSONObject();
-                    clientObject.put("idClient", ClientSession.clientSession.getIdCliente());
-                    clientObject.put("idProduct", orders.getProduto().getIdProduto());
-                    requestArray.put(clientObject);
-                }
+            for (ItemPedido orders : listCart) {
+                JSONObject clientObject = new JSONObject();
+                clientObject.put("idClient", ClientSession.clientSession.getIdCliente());
+                clientObject.put("idProduct", orders.getProduto().getIdProduto());
+                requestArray.put(clientObject);
+            }
 
             JsonArrayRequest request = new JsonArrayRequest(
                     Request.Method.POST,
