@@ -22,7 +22,6 @@ import java.util.List;
 
 public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapter.ProdutoAdminViewHolder> {
 
-    private int getPosition;
     private List<Produto> produtos;
     private Context context;
     private OnAdminActionListener listener;
@@ -71,7 +70,6 @@ public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapte
         }
 
         holder.btnEditar.setOnClickListener(v -> {
-            this.getPosition = position;
             if (listener != null) {
                 listener.onEditarClick(produto);
             }
@@ -87,10 +85,6 @@ public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapte
     @Override
     public int getItemCount() {
         return produtos.size();
-    }
-
-    public int getGetPosition() {
-        return getPosition;
     }
 
     static class ProdutoAdminViewHolder extends RecyclerView.ViewHolder {

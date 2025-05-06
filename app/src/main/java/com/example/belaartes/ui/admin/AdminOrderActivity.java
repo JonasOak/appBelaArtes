@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belaartes.R;
+import com.example.belaartes.adapters.OrderAdminAdpter;
 import com.example.belaartes.adapters.ProdutoAdminAdapter;
 import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Produto;
@@ -28,9 +29,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminOrderActivity extends AppCompatActivity implements ProdutoAdminAdapter.OnAdminActionListener  {
+public class AdminOrderActivity extends AppCompatActivity implements OrderAdminAdpter.OnAdminActionListener  {
     private RecyclerView recyclerView;
-    private ProdutoAdminAdapter adapter;
+    private OrderAdminAdpter adapter;
     private FloatingActionButton fabAddProduto;
     private List<Cliente> listClient;
 
@@ -74,7 +75,7 @@ public class AdminOrderActivity extends AppCompatActivity implements ProdutoAdmi
         OrderRepository.getAllProdutos(AdminOrderActivity.this, new OrderRepository.OrdersProdutoCallback() {
             @Override
             public void onSuccess(List<Produto> produtos) {
-                adapter = new ProdutoAdminAdapter(produtos, AdminOrderActivity.this, AdminOrderActivity.this);
+                adapter = new OrderAdminAdpter(produtos, AdminOrderActivity.this, AdminOrderActivity.this);
                 recyclerView.setAdapter(adapter);
             }
 
@@ -99,11 +100,9 @@ public class AdminOrderActivity extends AppCompatActivity implements ProdutoAdmi
         });
     };
 
-
-    //Visualizar cliente
     @Override
-    public void onEditarClick(Produto produto) {
-        Cliente searchClient = listClient.get(adapter.getGetPosition());
+    public void onView(Produto product) {
+        Cliente searchClient = listClient.get(adapter.getSelectPosition());
         new AlertDialog.Builder(this)
                 .setTitle("Detalhes do Usuário")
                 .setMessage("NOME: " + searchClient.getNome() +
@@ -114,12 +113,5 @@ public class AdminOrderActivity extends AppCompatActivity implements ProdutoAdmi
                 })
 
                 .show();
-
-
-    }
-
-    @Override
-    public void onExcluirClick(Produto produto) {
-
     }
 }
