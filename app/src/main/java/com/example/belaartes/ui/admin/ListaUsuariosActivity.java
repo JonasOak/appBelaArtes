@@ -2,6 +2,7 @@ package com.example.belaartes.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.belaartes.R;
 import com.example.belaartes.adapters.UsuarioAdapter;
+import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
+import com.example.belaartes.data.repository.UsuarioRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
 
     private RecyclerView rvUsuarios;
     private UsuarioAdapter adapter;
-    private List<Usuario> listaUsuarios = new ArrayList<>();
+    private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,10 +132,21 @@ public class ListaUsuariosActivity extends AppCompatActivity {
     }
 
     private void carregarUsuarios() {
-        // Simulação de dados
-        listaUsuarios.clear();
-        listaUsuarios.add(new Usuario(1, "admin@email.com", "123", "Admin"));
-        listaUsuarios.add(new Usuario(2, "user@email.com", "123", "Usuário"));
-        adapter.notifyDataSetChanged();
+        UsuarioRepository.getAllUsuarios(ListaUsuariosActivity.this, new UsuarioRepository.UsuarioCallback() {
+            @Override
+            public void onSuccess(List<Usuario> usuarios) {
+                for (Usuario users : usuarios) {
+                    listaUsuarios.add(new Usuario(users.getIdUsuario(), users.getEmail(), users.getSenhaHash(), users.getCargo()));
+                    adapter.notifyDataSetChanged();
+
+                }
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
+            }
+        });
+
     }
 }
