@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CarrinhoComprasActivity extends BaseClienteActivity  {
+public class CarrinhoComprasActivity extends BaseClienteActivity {
     private TextView productSubTotal, viwTerms;
     private Button sendProof;
     private CheckBox terms;
@@ -67,6 +67,8 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
         initializeUI();
         setupListeners();
         calculateAllProduct();
+        mergeDuplicateProducts();
+
 
     }
 
@@ -122,9 +124,9 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
         viwTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                runOnUiThread(()->{
-                  Intent terms = new Intent(CarrinhoComprasActivity.this, TermsActivity.class);
-                  startActivity(terms);
+                runOnUiThread(() -> {
+                    Intent terms = new Intent(CarrinhoComprasActivity.this, TermsActivity.class);
+                    startActivity(terms);
                 });
             }
         });
@@ -161,9 +163,12 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
     private void calculateAllProduct() {
         BigDecimal subCalculate = BigDecimal.ZERO;
         for (ItemPedido requestCart : listCart) {
-            subCalculate = subCalculate.add(requestCart.getProduto().getPreco());
+            subCalculate = subCalculate.add(
+                    requestCart.getProduto().getPreco().multiply(BigDecimal.valueOf(requestCart.getQuantidade()))
+            );
         }
         productSubTotal.setText(String.valueOf(subCalculate));
+
     }
 
     private void sendOrder() {
@@ -183,6 +188,37 @@ public class CarrinhoComprasActivity extends BaseClienteActivity  {
 
     private boolean checkTerms() {
         return terms.isChecked();
+    }
+
+    private void mergeDuplicateProducts() {
+        List<ItemPedido> mergedList = new ArrayList<>();
+
+        for (ItemPedido item : listCart) {
+            boolean found = false;
+
+            for (ItemPedido mergedItem : mergedList) {
+                if (mergedItem.getProduto().getIdProduto() == item.getProduto().getIdProduto()) {
+                    // Produto já existe, soma a quantidade
+                    int novaQuantidade = mergedItem.getQuantidade() + item.getQuantidade();
+                    mergedItem.setQuantidade(novaQuantidade);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                // Produto ainda não está na lista, adiciona uma cópia
+                ItemPedido novoItem = new ItemPedido();
+                novoItem.setProduto(item.getProduto());
+                novoItem.setQuantidade(item.getQuantidade());
+                novoItem.setPrecoUnitario(item.getPrecoUnitario());
+                mergedList.add(novoItem);
+            }
+        }
+
+        // Atualiza a lista original
+        listCart.clear();
+        listCart.addAll(mergedList);
     }
 
     @Override
