@@ -198,7 +198,6 @@ public class CarrinhoComprasActivity extends BaseClienteActivity {
 
             for (ItemPedido mergedItem : mergedList) {
                 if (mergedItem.getProduto().getIdProduto() == item.getProduto().getIdProduto()) {
-                    // Produto já existe, soma a quantidade
                     int novaQuantidade = mergedItem.getQuantidade() + item.getQuantidade();
                     mergedItem.setQuantidade(novaQuantidade);
                     found = true;
@@ -207,7 +206,6 @@ public class CarrinhoComprasActivity extends BaseClienteActivity {
             }
 
             if (!found) {
-                // Produto ainda não está na lista, adiciona uma cópia
                 ItemPedido novoItem = new ItemPedido();
                 novoItem.setProduto(item.getProduto());
                 novoItem.setQuantidade(item.getQuantidade());
@@ -215,8 +213,6 @@ public class CarrinhoComprasActivity extends BaseClienteActivity {
                 mergedList.add(novoItem);
             }
         }
-
-        // Atualiza a lista original
         listCart.clear();
         listCart.addAll(mergedList);
     }
