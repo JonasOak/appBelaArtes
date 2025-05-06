@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.belaartes.R;
 import com.example.belaartes.data.model.entities.Produto;
 
@@ -20,12 +22,15 @@ import java.util.List;
 
 public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapter.ProdutoAdminViewHolder> {
 
+    private int getPosition;
     private List<Produto> produtos;
     private Context context;
     private OnAdminActionListener listener;
 
+
     public interface OnAdminActionListener {
         void onEditarClick(Produto produto);
+
         void onExcluirClick(Produto produto);
     }
 
@@ -66,6 +71,7 @@ public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapte
         }
 
         holder.btnEditar.setOnClickListener(v -> {
+            this.getPosition = position;
             if (listener != null) {
                 listener.onEditarClick(produto);
             }
@@ -83,10 +89,14 @@ public class ProdutoAdminAdapter extends RecyclerView.Adapter<ProdutoAdminAdapte
         return produtos.size();
     }
 
+    public int getGetPosition() {
+        return getPosition;
+    }
+
     static class ProdutoAdminViewHolder extends RecyclerView.ViewHolder {
         ImageView imagem;
         TextView nome, preco, estoque;
-        ImageButton btnEditar, btnExcluir;
+         ImageButton btnEditar, btnExcluir;
 
         public ProdutoAdminViewHolder(@NonNull View itemView) {
             super(itemView);
