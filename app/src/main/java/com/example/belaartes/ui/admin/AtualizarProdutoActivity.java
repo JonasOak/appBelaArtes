@@ -1,17 +1,12 @@
 package com.example.belaartes.ui.admin;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
+
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -19,27 +14,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
 
 import com.example.belaartes.data.model.dto.ProdutoDto;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
 import com.example.belaartes.data.util.GalleryUtils;
+import com.example.belaartes.data.util.MaskUtils;
 import com.example.belaartes.ui.comum.MenuHelper;
 import com.example.belaartes.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class AtualizarProdutoActivity extends GalleryUtils {
     private byte[] imageBytes;
@@ -48,6 +44,7 @@ public class AtualizarProdutoActivity extends GalleryUtils {
     private String imgProductBase64;
     private ImageView btnMenu, imgProduto;
     private Button saveProduct;
+    private ImageButton btnReturn;
     private EditText productName, productDescription, productPrice, productAmount;
     private TextView screenTitle;
     private Produto productSelected;
@@ -95,8 +92,13 @@ public class AtualizarProdutoActivity extends GalleryUtils {
         initializeUI();
         fillInTheField();
         setupListeners();
+        initMask();
 
     }
+    private void initMask(){
+        this.productPrice.addTextChangedListener(MaskUtils.insertMoneyMask(productPrice));
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,6 +145,7 @@ public class AtualizarProdutoActivity extends GalleryUtils {
         this.productDescription = findViewById(R.id.edtDescricao);
         this.productPrice = findViewById(R.id.edtPreco);
         this.productAmount = findViewById(R.id.edtQuantidade);
+        this.btnReturn = findViewById(R.id.btn_voltar);
         this.saveProduct = findViewById(R.id.btnSalvar);
         this.productSelected = new Produto();
         this.idProduct = 0;
@@ -150,6 +153,9 @@ public class AtualizarProdutoActivity extends GalleryUtils {
 
 
     }
+
+
+
     private void exibirImagemBase64(String base64, ImageView imageView) {
         if (base64 != null && !base64.isEmpty()) {
             try {
@@ -175,7 +181,8 @@ public class AtualizarProdutoActivity extends GalleryUtils {
             this.idProduct = productSelected.getIdProduto();
             this.productName.setText(productSelected.getNome());
             this.productDescription.setText(productSelected.getDescricao());
-            this.productPrice.setText(String.valueOf(productSelected.getPreco()));
+            NumberFormat formatoReal = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+            this.productPrice.setText(formatoReal.format(productSelected.getPreco()));
             this.productAmount.setText(String.valueOf(productSelected.getEstoque()));
             this.imgProductBase64 = productSelected.getImagem();
             if (productSelected.getImagem() != null && !productSelected.getImagem().isEmpty()) {
@@ -191,11 +198,13 @@ public class AtualizarProdutoActivity extends GalleryUtils {
 
 
     protected ProdutoDto saveProductDto() {
+        String precoTexto = productPrice.getText().toString().replaceAll("[^\\d,]", "").replace(",", ".");
+        BigDecimal price = new BigDecimal(precoTexto);
         return new ProdutoDto(
                 productName.getText().toString(),
                 productDescription.getText().toString(),
                 "Bolsa",
-                new BigDecimal(Long.valueOf(productPrice.getText().toString())),
+                price,
                 convertImageToBase64(imageBytes),
                 Integer.valueOf(productAmount.getText().toString())
         );
@@ -203,6 +212,7 @@ public class AtualizarProdutoActivity extends GalleryUtils {
 
 
     private void setupListeners() {
+        btnReturn.setOnClickListener(v->{finish();});
         //Abri galeria
         imgProduto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);

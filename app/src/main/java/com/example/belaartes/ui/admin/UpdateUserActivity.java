@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class UpdateUserActivity extends AppCompatActivity {
     private EditText etEmail, etSenha;
     private Spinner spinnerCargo;
     private Usuario usuario;
+    private ImageButton btnReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class UpdateUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_user);
 
         // Inicializa views
+        this.btnReturn = findViewById(R.id.imageView4);
         etEmail = findViewById(R.id.etEmail);
         etSenha = findViewById(R.id.etSenha);
         spinnerCargo = findViewById(R.id.spinnerCargo);
@@ -43,6 +46,7 @@ public class UpdateUserActivity extends AppCompatActivity {
         }
 
         btnSalvar.setOnClickListener(v -> salvarUsuario());
+        btnReturn.setOnClickListener(v-> finish());
     }
 
     private void preencherCampos() {

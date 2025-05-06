@@ -1,5 +1,6 @@
 package com.example.belaartes.ui.user;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -26,10 +27,25 @@ public class ActivityUserConfig extends AppExtends {
 
     }
 
-    private void setupListeners(){
-        btnLogout.setOnClickListener(v ->{logout();});
-        btnDisableAccount.setOnClickListener(v->{disableAccount();});
-        btnDelete.setOnClickListener(v -> {deleteAccount();});
+    private void setupListeners() {
+        btnLogout.setOnClickListener(v -> showConfirmationDialog(
+                "Sair da conta",
+                "Tem certeza que deseja sair?",
+                this::logout
+        ));
+
+        btnDisableAccount.setOnClickListener(v -> showConfirmationDialog(
+                "Desativar conta",
+                "Deseja realmente desativar sua conta temporariamente?",
+                this::disableAccount
+        ));
+
+        btnDelete.setOnClickListener(v -> showConfirmationDialog(
+                "Excluir conta",
+                "Essa ação é irreversível. Tem certeza que deseja excluir sua conta?",
+                this::deleteAccount
+        ));
     }
+
 
 }

@@ -1,4 +1,5 @@
 package com.example.belaartes.ui.admin;
+
 import android.Manifest;
 import android.util.Base64;
 
@@ -30,6 +31,7 @@ import com.example.belaartes.data.abstractClass.ProductExtends;
 import com.example.belaartes.data.model.dto.ProdutoDto;
 import com.example.belaartes.data.model.entities.Produto;
 import com.example.belaartes.data.repository.ProdutoRepository;
+import com.example.belaartes.data.util.MaskUtils;
 import com.example.belaartes.ui.comum.MenuHelper;
 
 import java.io.ByteArrayOutputStream;
@@ -47,6 +49,7 @@ public class CriarProdutoActivity extends ProductExtends {
     private EditText productName, productDescription, productPrice, productAmount;
     private TextView screenTitle;
     private Produto productSelected;
+
     private void verificarPermissaoGaleria() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
@@ -66,6 +69,7 @@ public class CriarProdutoActivity extends ProductExtends {
             }
         }
     }
+
     private void abrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, getREQUEST_IMAGE_PICK());
@@ -77,6 +81,7 @@ public class CriarProdutoActivity extends ProductExtends {
         setContentView(R.layout.activity_cadastro_produto);
         initializeUI();
         setupListeners();
+        initMask();
 
     }
 
@@ -116,6 +121,7 @@ public class CriarProdutoActivity extends ProductExtends {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,7 +173,7 @@ public class CriarProdutoActivity extends ProductExtends {
 //
 
 
-    private void initializeUI(){
+    private void initializeUI() {
         this.screenTitle = findViewById(R.id.txtTitulo);
         imgProduto = findViewById(R.id.cadastro_produto_img);
         screenTitle.setText("Cadastrar produtos");
@@ -182,18 +188,56 @@ public class CriarProdutoActivity extends ProductExtends {
 
     }
 
-    protected ProdutoDto saveProductDto(){
+    private void initMask() {
+        this.productPrice.addTextChangedListener(MaskUtils.insertMoneyMask(productPrice));
+    }
+
+    private boolean checkDate() {
+        if (imageBytes == null) {
+            runOnUiThread(() -> {
+                Toast.makeText(CriarProdutoActivity.this, "Imagem obrigatoria", Toast.LENGTH_SHORT).show();
+            });
+            return false;
+        }
+        if (productName.getText().toString().isEmpty()) {
+            productName.setError("Adicione um nome do produto!");
+            return false;
+        }
+        if (productDescription.getText().toString().isEmpty()) {
+            productDescription.setError("Adicione uma descrição para o produto");
+            return false;
+        }
+        if (productPrice.getText().toString().isEmpty()) {
+            productPrice.setError("Adicione um valor para o produto");
+            return false;
+        }
+
+        return true;
+    }
+
+    protected ProdutoDto saveProductDto() {
+        String precoTexto = productPrice.getText().toString().replaceAll("[^\\d,]", "").replace(",", ".");
+        BigDecimal price = new BigDecimal(precoTexto);
         return new ProdutoDto(
                 productName.getText().toString(),
                 productDescription.getText().toString(),
                 "Bolsa",
-                new BigDecimal(Long.valueOf(productPrice.getText().toString())),
+                price,
                 convertImageToBase64(imageBytes),
-                Integer.valueOf(productAmount.getText().toString())
+                1
         );
     }
-    private void setupListeners(){
-        saveProduct.setOnClickListener(v ->{createProduct(saveProductDto());});
+
+    private void setupListeners() {
+        saveProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkDate()) {
+                    createProduct(saveProductDto());
+                }
+            }
+        });
+        // saveProduct.setOnClickListener(v ->{createProduct(saveProductDto());});
         imgProduto.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
