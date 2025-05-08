@@ -66,12 +66,17 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoAdapter.Carrin
         }
         // Clicar para excluir
         holder.cleaProduct.setOnClickListener(v -> {
-            lista.remove(holder.getAdapterPosition());
-            notifyItemRemoved(holder.getAdapterPosition());
-            notifyItemRangeChanged(holder.getAdapterPosition(), lista.size());
+            if(item.getQuantidade() > 1 ){
+                item.setQuantidade(item.getQuantidade() -1);
+                notifyItemChanged(position);
+            } else {
+                lista.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
+                notifyItemRangeChanged(holder.getAdapterPosition(), lista.size());
 
-            if (onItemRemoveListener != null) {
-                onItemRemoveListener.onItemRemoved();
+                if (onItemRemoveListener != null) {
+                    onItemRemoveListener.onItemRemoved();
+                }
             }
         });
     }
