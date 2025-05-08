@@ -4,6 +4,7 @@ import static com.example.belaartes.data.session.ClientSession.clientSession;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class MenuHelper  {
 
         PopupMenu popup = new PopupMenu(context, anchor);
         popup.getMenuInflater().inflate(R.menu.dropdown_menu, popup.getMenu());
+        popup.setGravity(Gravity.END);
 
         popup.setOnMenuItemClickListener(menuItem -> {
             int id = menuItem.getItemId();

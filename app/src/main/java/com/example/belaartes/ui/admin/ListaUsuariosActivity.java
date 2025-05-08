@@ -18,6 +18,7 @@ import com.example.belaartes.R;
 import com.example.belaartes.adapters.UsuarioAdapter;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.UsuarioRepository;
+import com.example.belaartes.ui.comum.MenuHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class ListaUsuariosActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         // Configurar RecyclerView
         rvUsuarios = findViewById(R.id.rvUsuarios);
@@ -63,28 +65,21 @@ public class ListaUsuariosActivity extends AppCompatActivity {
         carregarUsuarios();
     }
 
+    // Menu superior (ícone de lista)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
-//        MenuItem searchItem = menu.findItem(R.id.action_search);
-//        SearchView searchView = (SearchView) searchItem.getActionView();
-//        searchView.setQueryHint("Buscar usuários...");
         return true;
     }
 
+    // Ação ao clicar no ícone de menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_search) {
-            buscarUsuarios();
-            return true;
-        } else if (id == R.id.action_menu) {
-            mostrarMenuDropdown(item);
+        if (item.getItemId() == R.id.action_menu) {
+            View anchor = findViewById(R.id.toolbar); // âncora para o PopupMenu
+            MenuHelper.mostrarMenu(this, anchor);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
