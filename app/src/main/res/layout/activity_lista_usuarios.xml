@@ -29,13 +29,13 @@
                 <!-- SearchView -->
 
                 <!-- Ícone do menu -->
-                <ImageButton
-                    android:id="@+id/btnMenu"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/list"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Menu"/>
+<!--                <ImageButton-->
+<!--                    android:id="@+id/btnMenu"-->
+<!--                    android:layout_width="48dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:src="@drawable/list"-->
+<!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                    android:contentDescription="Menu"/>-->
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

@@ -60,7 +60,7 @@
             android:id="@+id/order_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pencil_line"
+            android:src="@drawable/eye"
             android:contentDescription="Visualizar"
             android:background="?selectableItemBackgroundBorderless"
             app:layout_constraintTop_toTopOf="parent"
