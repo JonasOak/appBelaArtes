@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ public class RegisterClientActivity extends AppCompatActivity {
     private EditText name, cpf, phone, logradouro, numero, bairro, cep;
     private TextInputLayout tilCep;
     private Button next;
+    private ImageButton finishScreen;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class RegisterClientActivity extends AppCompatActivity {
         this.cep = findViewById(R.id.register_city_cep);
         this.next = findViewById(R.id.btn_register_proximo);
         this.tilCep = findViewById(R.id.til_cep);
+        this.finishScreen = findViewById(R.id.imageView4);
     }
 
     private void initMask(){
@@ -47,6 +50,9 @@ public class RegisterClientActivity extends AppCompatActivity {
         this.cpf.addTextChangedListener(MaskUtils.insertCpfMask(cpf));
     }
     private void setupListeners() {
+        finishScreen.setOnClickListener(v->{
+            finish();
+        });
         next.setOnClickListener(v -> {
             if (checkDate()) {
                 Cliente client = new Cliente(
