@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class RegisterLoginActivity extends AppCompatActivity {
 
     private EditText email, password, repeatPassword;
     private Button finish, showPasswordAndRepeatPassword;
+    private ImageButton buttonReturn;
     private boolean showPassword;
 
     @Override
@@ -38,11 +40,16 @@ public class RegisterLoginActivity extends AppCompatActivity {
         this.repeatPassword = findViewById(R.id.register_repeat_password);
         this.finish = findViewById(R.id.btn_register_finish);
         this.showPasswordAndRepeatPassword = findViewById(R.id.register_login_show_password);
-
         this.showPassword = false;
+        this.buttonReturn = findViewById(R.id.imageView4);
     }
+    
 
     private void setupListeners() {
+        buttonReturn.setOnClickListener(v->{
+            finish();
+        });
+
         showPasswordAndRepeatPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
