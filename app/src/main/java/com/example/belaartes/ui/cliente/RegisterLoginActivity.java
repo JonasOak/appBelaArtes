@@ -2,10 +2,8 @@ package com.example.belaartes.ui.cliente;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,12 +15,12 @@ import com.example.belaartes.data.model.entities.Cliente;
 import com.example.belaartes.data.model.entities.Usuario;
 import com.example.belaartes.data.repository.ClientRepository;
 import com.example.belaartes.ui.auth.LoginActivity;
+import com.google.android.material.button.MaterialButton;
 
 public class RegisterLoginActivity extends AppCompatActivity {
 
     private EditText email, password, repeatPassword;
-    private Button finish, showPasswordAndRepeatPassword;
-    private boolean showPassword;
+    private MaterialButton finish;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,49 +35,31 @@ public class RegisterLoginActivity extends AppCompatActivity {
         this.password = findViewById(R.id.register_password);
         this.repeatPassword = findViewById(R.id.register_repeat_password);
         this.finish = findViewById(R.id.btn_register_finish);
-        this.showPasswordAndRepeatPassword = findViewById(R.id.register_login_show_password);
-
-        this.showPassword = false;
     }
 
     private void setupListeners() {
-        showPasswordAndRepeatPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonShowPassword();
-            }
-        });
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkDate(email.getText().toString().trim(), password.getText().toString().trim(), repeatPassword.getText().toString().trim())) {
-                    Intent intent = getIntent();
-                    Cliente getDateClient = (Cliente) getIntent().getSerializableExtra("clientRegister");
-                    getDateClient.setUsuario(getUserFormat());
-                    registerUser(getDateClient);
-                    Log.d("Register login", "Resposta: " + getDateClient);
+                String emailText = email.getText().toString().trim();
+                String passwordText = password.getText().toString().trim();
+                String repeatPasswordText = repeatPassword.getText().toString().trim();
+
+                if (checkData(emailText, passwordText, repeatPasswordText)) {
+                    Cliente client = (Cliente) getIntent().getSerializableExtra("clientRegister");
+                    if (client != null) {
+                        client.setUsuario(new Usuario(emailText, passwordText));
+                        registerUser(client);
+                        Log.d("RegisterLogin", "Cliente pronto para cadastro: " + client);
+                    } else {
+                        Toast.makeText(RegisterLoginActivity.this, "Erro: dados do cliente não encontrados.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
     }
 
-
-    protected Usuario getUserFormat() {
-        return new Usuario(email.getText().toString().trim(), password.getText().toString().trim());
-    }
-    private void buttonShowPassword(){
-        if(!showPassword){
-            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            repeatPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            this.showPassword = true;
-        } else {
-            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            repeatPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            this.showPassword = false;
-        }
-        password.setSelection(password.getText().length());
-    }
-    private boolean checkDate(String email, String password, String repeatPassword) {
+    private boolean checkData(String email, String password, String repeatPassword) {
         if (email == null || email.isEmpty()) {
             this.email.setError("Email não pode ser vazio.");
             return false;
@@ -111,8 +91,8 @@ public class RegisterLoginActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     Toast.makeText(RegisterLoginActivity.this, response, Toast.LENGTH_LONG).show();
                     if (response.equals("Cliente cadastrado")) {
-                        Intent activityLogin = new Intent(RegisterLoginActivity.this, LoginActivity.class);
-                        startActivity(activityLogin);
+                        Intent loginIntent = new Intent(RegisterLoginActivity.this, LoginActivity.class);
+                        startActivity(loginIntent);
                         finish();
                     }
                 });
@@ -126,8 +106,4 @@ public class RegisterLoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }

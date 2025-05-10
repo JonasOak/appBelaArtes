@@ -118,7 +118,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Voltar"
         android:scaleType="centerInside"
-        android:src="@drawable/rewind"
+        android:src="@android:drawable/ic_menu_revert"
         app:layout_constraintBottom_toTopOf="@id/footer_admin"
         app:layout_constraintStart_toStartOf="parent" />
 

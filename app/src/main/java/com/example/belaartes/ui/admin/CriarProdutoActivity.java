@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,8 @@ public class CriarProdutoActivity extends ProductExtends {
     private EditText productName, productDescription, productPrice, productAmount;
     private TextView screenTitle;
     private Produto productSelected;
+
+    private ImageButton btn_voltar;
 
     private void verificarPermissaoGaleria() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -182,6 +185,7 @@ public class CriarProdutoActivity extends ProductExtends {
         this.productPrice = findViewById(R.id.edtPreco);
         this.productAmount = findViewById(R.id.edtQuantidade);
         this.saveProduct = findViewById(R.id.btnSalvar);
+        this.btn_voltar =findViewById(R.id.btn_voltar);
         this.productSelected = new Produto();
         this.idProduct = 0;
         this.imgProductBase64 = null;
@@ -243,5 +247,10 @@ public class CriarProdutoActivity extends ProductExtends {
             intent.setType("image/*");
             startActivityForResult(intent, getREQUEST_IMAGE_PICK());
         });
+        btn_voltar.setOnClickListener(
+                v -> {
+                    finish();
+                }
+        );
     }
 }

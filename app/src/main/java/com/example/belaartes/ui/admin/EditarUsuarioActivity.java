@@ -1,5 +1,6 @@
 package com.example.belaartes.ui.admin;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,15 +24,11 @@ public class EditarUsuarioActivity extends AppCompatActivity {
     private Button btnSalvar;
     private Usuario usuario;
 
+    private ImageView btn_voltar;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_editar_usuario);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_usuario);
@@ -39,6 +38,8 @@ public class EditarUsuarioActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Editar Usuário");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        this.btn_voltar =findViewById(R.id.btn_voltar);
 
         // Inicializar views
         etEmail = findViewById(R.id.etEmail);
@@ -63,6 +64,11 @@ public class EditarUsuarioActivity extends AppCompatActivity {
         // Configurar botão salvar
         btnSalvar.setOnClickListener(v ->
                 salvarAlteracoes()
+        );
+        btn_voltar.setOnClickListener(
+                v -> {
+                    finish();
+                }
         );
     }
 

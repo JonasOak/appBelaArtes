@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/footer_admin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -26,8 +26,6 @@
             android:gravity="center_horizontal">
 
             <!-- Título -->
-
-            <!-- Nome -->
             <TextView
                 android:id="@+id/txtTitulo"
                 android:layout_width="match_parent"
@@ -38,6 +36,8 @@
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold" />
+
+            <!-- Imagem -->
             <ImageView
                 android:id="@+id/cadastro_produto_img"
                 android:layout_width="150dp"
@@ -48,6 +48,7 @@
                 android:background="@drawable/bg_image_border"
                 android:contentDescription="Selecionar imagem"/>
 
+            <!-- Nome -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -103,8 +104,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Quantidade"
                     android:visibility="gone"
-                    android:inputType="number"
-                    />
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Botão Salvar -->
@@ -119,20 +119,21 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Logo ou botão de voltar -->
+    <!-- Botão voltar um pouco acima do rodapé -->
     <ImageButton
         android:id="@+id/btn_voltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="64dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Voltar"
-        android:scaleType="centerInside"
-        android:src="@drawable/rewind"
-        app:layout_constraintBottom_toTopOf="@id/footer_admin"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:padding="4dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <!-- Rodapé -->
     <TextView
         android:id="@+id/footer_admin"
         android:layout_width="0dp"

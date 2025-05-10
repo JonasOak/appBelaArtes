@@ -121,8 +121,7 @@
             android:layout_margin="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Fechar"
-            android:src="@drawable/rewind"
-            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_revert"
             android:layout_gravity="start" />
 
     </LinearLayout>

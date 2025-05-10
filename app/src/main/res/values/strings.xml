@@ -38,6 +38,7 @@ Agradecemos pela sua preferência!
 </string>
     <string name="fechar">Fechar</string>
     <string name="footerTexto">© Bellas Artes 2025 - Sistema Admin</string>
+    <string name="footerTextoCliente">© Bellas Artes 2025</string>
     <string name="deletar_user">Deletar usuário</string>
     <string name="disable_user">Desativar conta</string>
     <string name="logout">Sair</string>

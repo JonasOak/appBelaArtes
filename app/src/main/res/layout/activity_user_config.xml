@@ -1,24 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="25dp">
+    android:background="@color/pink"
+    android:padding="24dp">
 
-    <Button
-        android:layout_width="match_parent"
+    <!-- Logo da loja centralizada -->
+    <ImageView
+        android:id="@+id/logo_loja"
+        android:layout_width="87dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Logo da Loja"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/bellas_artes_icon" />
+
+    <!-- Botão de voltar -->
+    <ImageButton
+        android:id="@+id/btn_voltar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Voltar"
+        android:padding="4dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botão Deletar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profile_delete_user"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:iconPadding="12dp"
         android:text="@string/deletar_user"
-        android:id="@+id/profile_delete_user"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/disable_user"
-        android:id="@+id/profile_disable_user"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/logout"
-        android:id="@+id/profile_logout_user"/>
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosa_tracejado"
+        app:cornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/logo_loja"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+    <!-- Botão Desativar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profile_disable_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:icon="@android:drawable/ic_lock_lock"
+        app:iconPadding="12dp"
+        android:text="@string/disable_user"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosa_tracejado"
+        app:cornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/profile_delete_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botão Logout -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profile_logout_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:icon="@android:drawable/ic_lock_power_off"
+        app:iconPadding="12dp"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosa_tracejado"
+        app:cornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/profile_disable_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
