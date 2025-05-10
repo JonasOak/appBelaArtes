@@ -55,10 +55,13 @@
 
             <!-- Senha -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSenha"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:endIconMode="password_toggle"
+                app:endIconContentDescription="Mostrar ou ocultar senha">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/register_password"
@@ -70,10 +73,13 @@
 
             <!-- Confirmar Senha -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRepeatSenha"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="24dp"
+                app:endIconMode="password_toggle"
+                app:endIconContentDescription="Mostrar ou ocultar senha">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/register_repeat_password"
@@ -83,16 +89,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
             <!-- Botão Próximo -->
-            <Button
-                android:id="@+id/register_login_show_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/rosa_tracejado"
-                android:text="Mostrar senha" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_register_finish"
                 android:layout_width="match_parent"
@@ -103,11 +100,7 @@
                 android:backgroundTint="@color/rosa_tracejado"
                 android:textColor="@color/white" />
         </LinearLayout>
-
-
-
     </ScrollView>
-
 
     <!-- Botão Voltar -->
     <ImageView

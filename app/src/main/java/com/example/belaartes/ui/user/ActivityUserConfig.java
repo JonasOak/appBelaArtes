@@ -25,6 +25,7 @@ public class ActivityUserConfig extends AppExtends {
         this.btnDisableAccount = findViewById(R.id.profile_disable_user);
         this.btnLogout = findViewById(R.id.profile_logout_user);
 
+        findViewById(R.id.btn_voltar).setOnClickListener(v -> finish());
     }
 
     private void setupListeners() {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,6 +17,8 @@ public class RecoverActivity extends AppCompatActivity {
     private Button btn_recover;
     private EditText emailRecover;
 
+    private ImageView btn_close;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class RecoverActivity extends AppCompatActivity {
     private void initializeUi() {
         this.btn_recover = findViewById(R.id.btn_recover_password);
         this.emailRecover = findViewById(R.id.edit_recover_password);
+        this.btn_close =findViewById(R.id.btn_close);
     }
     private void setupListeners(){
         btn_recover.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +55,11 @@ public class RecoverActivity extends AppCompatActivity {
                 }
             }
         });
+        btn_close.setOnClickListener(
+                v -> {
+                    finish();
+                }
+        );
     }
     private boolean checkDate() {
         if (emailRecover.getText().toString().isEmpty() || !emailRecover.getText().toString().contains("@")) {
